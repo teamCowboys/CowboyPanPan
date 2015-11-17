@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class test : MonoBehaviour {
+public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("test");
+	
 	}
 	
 	// Update is called once per frame
