@@ -9,6 +9,7 @@ public class Gun : IWeapon {
     public override void Init()
     {
         base.Init();
+
     }
 
     public override void Shoot()

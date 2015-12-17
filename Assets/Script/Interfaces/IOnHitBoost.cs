@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IOnHitBoost : MonoBehaviour {
+public class IOnHitBoost : IBoost {
 
 	// Use this for initialization
 	void Start () {

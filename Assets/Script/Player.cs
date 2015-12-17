@@ -7,12 +7,14 @@ public class Player : MonoBehaviour, IDestroyable{
     public IWeapon currentWeapon;
 
     [Header("Stats")]
+    public int playerId;
     public float healthPoint;
     public float maxHealthPoint;
 
     [Header("Cursor")]
-    public Vector3 cursorPosition;
+    public float cursorSensibility;
     public Texture cursorTexture = null;
+    private Vector3 cursorPosition;
     private Vector3 ScreenPos;
 
     void Awake()
@@ -21,6 +23,8 @@ public class Player : MonoBehaviour, IDestroyable{
         gun.AttachTo(gameObject);
         healthPoint = maxHealthPoint;
         cursorPosition = Camera.main.WorldToScreenPoint(transform.position);
+        cursorPosition.y = Screen.height / 2f;
+        cursorSensibility = Screen.width / 3f;
 
     }
 
@@ -28,10 +32,9 @@ public class Player : MonoBehaviour, IDestroyable{
     {
         if(cursorTexture)
         {
-            Vector3 ScreenPos = Camera.main.WorldToScreenPoint(transform.position);
-            float posx = Mathf.Clamp((-cursorTexture.width / 2f) + ScreenPos.x, (-cursorTexture.width / 2f), Screen.width - (cursorTexture.width / 2f));
-            float posy = Mathf.Clamp(Screen.height - ScreenPos.y - (cursorTexture.height / 2f), (-cursorTexture.height / 2f), Screen.height - (cursorTexture.height / 2f));
-            GUI.DrawTexture(new Rect(posx,posy, cursorTexture.width, cursorTexture.height), cursorTexture);
+            cursorPosition.x = Mathf.Clamp(cursorPosition.x, (-cursorTexture.width / 2f), Screen.width - (cursorTexture.width / 2f));
+            cursorPosition.y = Mathf.Clamp(cursorPosition.y, (-cursorTexture.height / 2f), Screen.height - (cursorTexture.height / 2f));
+            GUI.DrawTexture(new Rect(cursorPosition.x, cursorPosition.y, cursorTexture.width, cursorTexture.height), cursorTexture);
         }
     }
 	// Use this for initialization
@@ -41,9 +44,13 @@ public class Player : MonoBehaviour, IDestroyable{
 	
 	// Update is called once per frame
 	void Update () {
-        /*if (Input.GetMouseButton(0))
-            currentWeapon.Shoot();*/
-	}
+        float h = Input.GetAxisRaw("Horizontal " + playerId);
+        float v = Input.GetAxisRaw("Vertical " + playerId);
+        if(Mathf.Abs(h)>0.3f)
+            cursorPosition.x += h * cursorSensibility * Time.deltaTime;
+        if(Mathf.Abs(v) > 0.3f)
+            cursorPosition.y += v * cursorSensibility * Time.deltaTime;
+    }
 
     public void ChangeGun(EnumerationGun.GunType typeOfGun)
     {

@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 95974131}
   - 114: {fileID: 95974130}
   - 50: {fileID: 95974133}
-  - 114: {fileID: 95974132}
+  - 114: {fileID: 95974134}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -115,10 +115,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
-  healthPoint: 0
-  maxHealthPoint: 0
-  cursorPosition: {x: 0, y: 0, z: 0}
-  cursorTexture: {fileID: 0}
+  playerId: 1
+  healthPoint: 10
+  maxHealthPoint: 10
+  cursorSensibility: 10
+  cursorTexture: {fileID: 2800000, guid: 3f04b42c174e3004385f2221a5e9223a, type: 3}
 --- !u!4 &95974131
 Transform:
   m_ObjectHideFlags: 0
@@ -132,21 +133,6 @@ Transform:
   - {fileID: 467476849}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &95974132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 95974129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66e65a086d6d35459217b231feac788, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 200
-  gravity: 10
-  ground: 0
 --- !u!50 &95974133
 Rigidbody2D:
   serializedVersion: 2
@@ -163,6 +149,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &95974134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 95974129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa102de91ed1f3489256ed66a6a9c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jumpForce: 100
+  gravity: 5
+  ground: 0
 --- !u!1 &385996567
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,62 +296,16 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 560c93c58823f1c4d846ca60eee76652, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c5a02f1e82f9e554c8ff42d2167e4e3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &1125579101
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1125579103}
-  - 114: {fileID: 1125579102}
-  m_Layer: 0
-  m_Name: Gun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1125579102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1125579101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc151c379c54a6346a639cda101cfd87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players: []
-  Picked: 0
-  CollisionDistance: 1
-  type: 0
-  chargeurMax: 0
-  chargeurCurrent: 0
-  damage: 0
-  fireRate: 0
-  cursor: {fileID: 0}
---- !u!4 &1125579103
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1125579101}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.75999999, y: -.685093403, z: -6.19129658}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
 --- !u!1 &1413691870
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +340,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -400,7 +357,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1413691870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: .0299999993, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1.70840943, y: 1.18831611, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
