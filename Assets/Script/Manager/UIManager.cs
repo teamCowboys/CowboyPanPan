@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour {
     }
     #endregion
 
+    #region Score Variables
     public RectTransform scorePrefab;
     public GameObject[] PlayerUI = { null, null };
     Text[] scoreUI = { null, null };
@@ -28,51 +29,50 @@ public class UIManager : MonoBehaviour {
     RectTransform[] trsCombo = { null, null };
     int[] corotineCount = { 0, 0 };
     bool[] isComboMultSliding = { false, false };
+    #endregion
 
-	// Use this for initialization
+
 	void Start () {
+        InitScore();
+	}
+
+    void InitScore()
+    {
         if (PlayerUI[0] == null) PlayerUI[0] = GameObject.Find("Player1UI");
         if (PlayerUI[0] == null) PlayerUI[0] = GameObject.Find("Player2UI");
         scoreUI[0] = GameObject.Find("PlayerScore1").GetComponent<Text>();
         scoreUI[1] = GameObject.Find("PlayerScore2").GetComponent<Text>();
         comboUI[0] = GameObject.Find("PlayerCombo1").GetComponent<Text>();
         comboUI[1] = GameObject.Find("PlayerCombo2").GetComponent<Text>();
-        scoreUI[0].text = "";
-        scoreUI[1].text = "";
-        displayCombo(0,0,0);
-        displayCombo(1,0,0);
-	}
+        scoreUI[0].text = "0";
+        scoreUI[1].text = "0";
+        DisplayCombo(0, 0, 0);
+        DisplayCombo(1, 0, 0);
+    }
 
-    public void displayCombo(int tabID, int value, int combo)
+    public void DisplayScore(int tabID, long score)
     {
-        if (combo == 0)
-        {
+        scoreUI[tabID].text = score.ToString();
+    }
+
+    public void DisplayCombo(int tabID, int value, int combo)
+    {
+        if (combo == 0){
             comboUI[tabID].text = "";
-        }
-        else
-        {
-            if (value != 0)
-            {
-                comboSlide(tabID, value);
-            }
-            else
-            {
-                if (corotineCount[tabID] == 0) StartCoroutine(comboSizeFeedback(tabID, comboUI[tabID]));
-                comboMultSlide(tabID, combo);
-            }
+        }else{
+            if (corotineCount[tabID] == 0) StartCoroutine(comboSizeFeedback(tabID, comboUI[tabID]));
             comboUI[tabID].text = value + " x" + combo;
-            
         }
     }
 
-    void comboMultSlide(int tabID, int value = 0)
+    public void comboMultSlide(int tabID, int combo = 0)
     {
         if (trsCombo[tabID] == null)
         {
             trsCombo[tabID] = Instantiate(scorePrefab);
             trsCombo[tabID].parent = comboUI[tabID].transform;
         }
-        trsCombo[tabID].GetComponent<Text>().text = "x" + value.ToString();
+        trsCombo[tabID].GetComponent<Text>().text = "x" + combo.ToString();
         if (!isComboMultSliding[tabID])
         {
             isComboMultSliding[tabID] = true;
@@ -81,17 +81,9 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    void endComboFeedback(int tabID, Text txt)
-    {
-        corotineCount[tabID]--;
-        if (corotineCount[tabID] == 0)
-        {
-            txt.transform.localRotation = new Quaternion(0, 0, 0, 0);
-            txt.resizeTextMaxSize = 30;
-        }
-    }
+    
 
-    void comboSlide(int tabID, int value = 0)
+    public void comboSlide(int tabID, int value = 0)
     {
         RectTransform trs;
         trs = Instantiate(scorePrefab);
@@ -118,9 +110,15 @@ public class UIManager : MonoBehaviour {
         Destroy(trs.gameObject);
         isComboMultSliding[tabID] = false;
     }
-    public void displayScore(int tabID, int score)
+
+    public void endComboFeedback(int tabID)
     {
-        scoreUI[tabID].text = score.ToString();
+        corotineCount[tabID]--;
+        if (corotineCount[tabID] == 0)
+        {
+            comboUI[tabID].transform.localRotation = new Quaternion(0, 0, 0, 0);
+            comboUI[tabID].resizeTextMaxSize = 30;
+        }
     }
 
     IEnumerator comboSliding(RectTransform trs)
@@ -143,19 +141,12 @@ public class UIManager : MonoBehaviour {
 
     IEnumerator comboSizeFeedback(int tabID, Text txt)
     {
-        /*corotineCount[tabID]++;
-        txt.resizeTextMaxSize = 50;
-        txt.transform.localEulerAngles = new Vector3(0,0,10);//new Quaternion(10f,0,0,0);
-        yield return new WaitForSeconds(0.2f);
-        endComboFeedback(tabID, txt);*/
         corotineCount[tabID]++;
-
         while (txt.resizeTextMaxSize < 50)
         {
             txt.transform.localEulerAngles = new Vector3(0, 0, 10);//new Quaternion(10f,0,0,0);
             txt.resizeTextMaxSize += 1;
             yield return new WaitForSeconds(0.01f);
-
         }
     }
 
