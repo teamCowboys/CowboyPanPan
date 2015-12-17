@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour {
         if (trsCombo[tabID] == null)
         {
             trsCombo[tabID] = Instantiate(scorePrefab);
-            trsCombo[tabID].parent = comboUI[tabID].transform;
+            trsCombo[tabID].SetParent(comboUI[tabID].transform);
         }
         trsCombo[tabID].GetComponent<Text>().text = "x" + combo.ToString();
         if (!isComboMultSliding[tabID])
@@ -81,18 +81,29 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    
-
+    //Appel de la corotine de slide de combo value
     public void comboSlide(int tabID, int value = 0)
     {
         RectTransform trs;
         trs = Instantiate(scorePrefab);
         trs.transform.position = comboUI[tabID].transform.position;
-        trs.parent = comboUI[tabID].transform.parent;
+        trs.SetParent(comboUI[tabID].transform.parent);
         trs.GetComponent<Text>().text = value.ToString();
         StartCoroutine(comboSliding(trs));
     }
 
+    // Met fin à un combo
+    public void endComboFeedback(int tabID)
+    {
+        corotineCount[tabID]--;
+        if (corotineCount[tabID] == 0)
+        {
+            comboUI[tabID].transform.localRotation = new Quaternion(0, 0, 0, 0);
+            comboUI[tabID].resizeTextMaxSize = 30;
+        }
+    }
+
+    // Slide vers le haut du multiplicateur de combo
     IEnumerator comboMultSlide(int tabID, RectTransform trs)
     {
         trs.sizeDelta = new Vector2(300, 100);
@@ -111,16 +122,7 @@ public class UIManager : MonoBehaviour {
         isComboMultSliding[tabID] = false;
     }
 
-    public void endComboFeedback(int tabID)
-    {
-        corotineCount[tabID]--;
-        if (corotineCount[tabID] == 0)
-        {
-            comboUI[tabID].transform.localRotation = new Quaternion(0, 0, 0, 0);
-            comboUI[tabID].resizeTextMaxSize = 30;
-        }
-    }
-
+    // Slide vers le bas de la valeur du combo
     IEnumerator comboSliding(RectTransform trs)
     {
         Text txt = trs.GetComponent<Text>();
@@ -139,6 +141,7 @@ public class UIManager : MonoBehaviour {
         Destroy(trs.gameObject);
     }
 
+    // Effet de grossisement de l'UI combo au début d'un combo
     IEnumerator comboSizeFeedback(int tabID, Text txt)
     {
         corotineCount[tabID]++;

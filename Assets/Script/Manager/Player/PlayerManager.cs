@@ -20,7 +20,7 @@ public partial class PlayerManager : MonoBehaviour {
         DontDestroyOnLoad(this);
     }
     #endregion
-
+    public int[] PlayerCredit = { 2, 2};
 	// Use this for initialization
 	void Start () {
         InitScoreUI();
@@ -45,6 +45,19 @@ public partial class PlayerManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.S))
         {
             addCombo(1, 2);
+        }
+    }
+
+    public void CreditLost(int playerID)
+    {
+        PlayerCredit[playerID]--;
+        if(PlayerCredit[playerID] == 0)
+        {
+            // Loser
+        }
+        else
+        {
+            // Another Try
         }
     }
 }
