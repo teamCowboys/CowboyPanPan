@@ -4,22 +4,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-    #region Singleton
-    static private ScoreManager s_Instance;
-    static public ScoreManager Instance
-    {
-        get
-        {
-            return s_Instance;
-        }
-    }
-    void Awake()
-    {
-        if (s_Instance == null)
-            s_Instance = this;
-        DontDestroyOnLoad(this);
-    }
-    #endregion
+    
     public RectTransform scorePrefab;
     public GameObject[] PlayerUI = {null,null};
     Text[] scoreUI = {null, null};
@@ -29,6 +14,7 @@ public class ScoreManager : MonoBehaviour {
     int[] comboValue = { 0, 0 };
     float[] lastTimeScore = {0f,0f};
     public float delayCombo = 2f;
+    bool[] isComboMultSliding = { false, false };
 
 	// Use this for initialization
 	void Start () {
@@ -127,7 +113,7 @@ public class ScoreManager : MonoBehaviour {
         
     }
 
-    bool[] isComboMultSliding = {false, false};
+    
     RectTransform[]  trsCombo= {null, null};
     void comboMultSlide(int tabID, int value = 0)
     {
