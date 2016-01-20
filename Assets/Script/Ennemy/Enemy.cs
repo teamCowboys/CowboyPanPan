@@ -12,13 +12,18 @@ public class Enemy : MonoBehaviour {
     public IEnemyState currentState;
     public IEnemyState[] state;
     public bool canHide = false;
+    public bool canMove = false;
     public int lifePoints= 2;                               // shoot needed before killing him
     float shootDuration;
     bool isHiding;
-
+    
     
     // Use this for initialization
     void Start () {
+        if (canMove)
+            canHide = false;
+        if (canHide)
+            canMove = false;
         isHiding = false;
         currentState = state[(int)S.SHOOT];
         currentState.Init(this.gameObject);
@@ -66,10 +71,6 @@ public class Enemy : MonoBehaviour {
         yield return new WaitForSeconds(time);
         isHiding = false;
         ChangeState(S.SHOOT);
-    }
-    void OnCollisionEnter()
-    {
-        
     }
 
     void ChangeState(S index)
