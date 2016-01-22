@@ -2,9 +2,8 @@
 using System.Collections;
 
 public class Gun : IWeapon {
-
-    private Player player = null;
-    public Texture cursor;
+    
+    public Sprite cursor;
 
     public override void Init()
     {
@@ -12,11 +11,6 @@ public class Gun : IWeapon {
 
     }
 
-    public override void Shoot()
-    {
-
-
-    }
 
     public override void AttachTo(GameObject obj)
     {
@@ -27,7 +21,7 @@ public class Gun : IWeapon {
             player.currentWeapon = obj.GetComponent<Gun>();
         player.currentWeapon.Picked = true;
         player = obj.GetComponent<Player>();
-        player.cursorTexture = cursor;
+        obj.GetComponent<PlayerAim>().cursor.sprite = cursor;
     }
 
     public override void GiveTo(Player player)
