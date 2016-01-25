@@ -38,10 +38,13 @@ public class Player : MonoBehaviour, IDestroyable{
             RaycastHit hitInfo = new RaycastHit();
             Debug.Log("mouse position " + Input.mousePosition+" Cursor position "+ GetComponent<PlayerAim>().getCursorPosition());
             //if (Physics.Raycast(Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition()), out hitInfo))
+            
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
             {
+               
                 IDestroyable test = hitInfo.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
                 test.applyDamage(5);
+                Debug.Log("Attack");
             }
         }
     }

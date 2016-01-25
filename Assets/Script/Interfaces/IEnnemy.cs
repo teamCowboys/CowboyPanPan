@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IEnnemy : MonoBehaviour {
+public abstract class IEnnemy : MonoBehaviour, IDestroyable
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public abstract void applyDamage(float dmg);
+
+    public abstract void Death();
 }

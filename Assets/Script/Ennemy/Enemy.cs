@@ -9,16 +9,15 @@ enum S
     MOVE = 3,
 };
 
-public class Enemy : MonoBehaviour {
+public class Enemy : IEnnemy {
     public IEnemyState currentState;
     public IEnemyState[] state;
     public bool canHide = false;
     public bool canMove = false;
-    public int lifePoints= 2;                               // shoot needed before killing him
+    public float lifePoints= 2;                               // shoot needed before killing him
     float shootDuration;
     bool isHiding;
-    
-    
+     
     // Use this for initialization
     void Start () {
         if (canMove)
@@ -32,10 +31,7 @@ public class Enemy : MonoBehaviour {
 	void Update () {
         currentState.Run();
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GetDamage();
-        }
+        
 	}
 
     void fight()
@@ -47,21 +43,6 @@ public class Enemy : MonoBehaviour {
         else
         {
             ChangeState(S.SHOOT);
-        }
-    }
-
-    void GetDamage()
-    {
-        lifePoints--;
-        if (lifePoints <= 0)
-        {
-            // Die
-            Debug.Log("Die");
-            ChangeState(S.DEAD);
-        }
-        else
-        {
-            Hide();
         }
     }
 
@@ -87,5 +68,26 @@ public class Enemy : MonoBehaviour {
         currentState.Stop();
         currentState = state[(int)index];
         currentState.Init(this.gameObject);
+    }
+
+    public override void applyDamage(float dmg)
+    {
+        if (lifePoints <= dmg)
+        {
+            // Die
+            Debug.Log("Die");
+            Death();
+        }
+        else
+        {
+            lifePoints -= dmg;
+            Hide();
+        }
+    }
+
+    public override void Death()
+    {
+        ChangeState(S.DEAD);
+
     }
 }

@@ -30,19 +30,19 @@ public partial class PlayerManager : MonoBehaviour {
     void Update()
     {
         // TEST INPUT
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             addScore(0, 100);
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             addScore(1, 100);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             addCombo(0, 2);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             addCombo(1, 2);
         }
