@@ -11,7 +11,11 @@ public class Player : MonoBehaviour, IDestroyable{
     public float healthPoint;
     public float maxHealthPoint;
 
- 
+    public float lastShot;
+    public float smokeDuration = 1.0f;
+    public TrailRenderer canonSmoke;
+
+
 
     void Awake()
     {
@@ -32,7 +36,12 @@ public class Player : MonoBehaviour, IDestroyable{
         if(Input.GetButtonDown("Fire"+playerId))
         {
             currentWeapon.Shoot();
+            lastShot = Time.time;
         }
+        if (Time.time > lastShot + smokeDuration)
+            canonSmoke.enabled  = false;
+        else
+            canonSmoke.enabled = true;
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo = new RaycastHit();
