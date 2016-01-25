@@ -9,7 +9,7 @@ public class Gun : AbstractWeapon {
         maxAmmo = 100.0f;
         chargeurMax = 10.0f;
         chargeurCurrent = 0.0f;
-        damage = 10.0f;
+        damage = 1.0f;
         fireRate = 0.2f;
         reloadingTime = 1.0f;
         base.Init();
