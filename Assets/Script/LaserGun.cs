@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Gun : AbstractWeapon {
-    
-
-
+public class LaserGun : AbstractWeapon {
+	
     public override void GiveTo(Player player)
     {
-        AttachTo(player.gameObject,typeof(Gun));
+        AttachTo(player.gameObject,typeof(LaserGun));
     }
-
 }
