@@ -23,9 +23,18 @@ public class Move : IEnemyState
 
             PullTheTrigger();
         }
-        
+        leaveScreen();
         Moving();
         
+    }
+
+    void leaveScreen()
+    {
+        if (badboy.position.x >15 || badboy.position.x < -15)
+        {
+
+            Destroy(badboy.gameObject);
+        }
     }
 
     public override void Stop()
@@ -50,8 +59,8 @@ public class Move : IEnemyState
 
     void Moving()
     {
+
         Vector3 pos = badboy.position;
-       
         badboy.transform.position += directionMove*Time.deltaTime ;
 
     }
