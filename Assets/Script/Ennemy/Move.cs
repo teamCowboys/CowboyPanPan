@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Shoot : IEnemyState
+public class Move : IEnemyState
 {
+
     public GameObject Ammo;
     Transform badboy;
-    GameObject[] target;
     Vector3 directionShoot;
+    GameObject[] target;
     Vector3 directionMove;
     public float shootRate = 0.5f;
     public float speed = 1;
     float lastShoot;
-    bool canMove ;
+    public bool moveRight;
 
     public override void Run()
     {
@@ -22,9 +23,10 @@ public class Shoot : IEnemyState
 
             PullTheTrigger();
         }
+        
+        Moving();
+        
     }
-
-    
 
     public override void Stop()
     {
@@ -34,15 +36,34 @@ public class Shoot : IEnemyState
     {
         badboy = obj.GetComponent<Transform>();
         lastShoot = 0;
-        target =  GameObject.FindGameObjectsWithTag("Player");
+        target = GameObject.FindGameObjectsWithTag("Player");
+        
+        if (moveRight)
+        {
+            directionMove = new Vector3(1, 0, 0);
+        }
+        else
+        {
+            directionMove = new Vector3(-1, 0, 0);
+        }
+    }
+
+    void Moving()
+    {
+        Vector3 pos = badboy.position;
+       
+        badboy.transform.position += directionMove*Time.deltaTime ;
+
     }
 
     void PullTheTrigger()
     {
         GameObject go;
-        int rnd = Mathf.FloorToInt(Random.Range(0, target.Length-1));
+        int rnd = Mathf.FloorToInt(Random.Range(0, target.Length - 1));
         //this.directionShoot = new Vector3(this.badboy.position.x + rnd, -5, 0);
-        go = (GameObject) Instantiate(Ammo, this.badboy.position, this.badboy.rotation);
+
+        go = (GameObject)Instantiate(Ammo, this.badboy.position, this.badboy.rotation);
+
         Vector3 dir = target[rnd].transform.position - this.badboy.position;
         dir.Normalize();
 
@@ -50,6 +71,4 @@ public class Shoot : IEnemyState
         lastShoot = 0;
 
     }
-
-
 }

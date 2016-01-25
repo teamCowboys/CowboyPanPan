@@ -5,7 +5,8 @@ enum S
     {
     SHOOT = 0,
     HIDE = 1,
-    DEAD = 2
+    DEAD = 2,
+    MOVE = 3,
 };
 
 public class Enemy : MonoBehaviour {
@@ -22,11 +23,9 @@ public class Enemy : MonoBehaviour {
     void Start () {
         if (canMove)
             canHide = false;
-        if (canHide)
-            canMove = false;
         isHiding = false;
         currentState = state[(int)S.SHOOT];
-        currentState.Init(this.gameObject);
+        fight();
     }
 	
 	// Update is called once per frame
@@ -39,7 +38,17 @@ public class Enemy : MonoBehaviour {
         }
 	}
 
-
+    void fight()
+    {
+        if (canMove)
+        {
+            ChangeState(S.MOVE);
+        }
+        else
+        {
+            ChangeState(S.SHOOT);
+        }
+    }
 
     void GetDamage()
     {
@@ -70,7 +79,7 @@ public class Enemy : MonoBehaviour {
         ChangeState(S.HIDE);
         yield return new WaitForSeconds(time);
         isHiding = false;
-        ChangeState(S.SHOOT);
+        fight();
     }
 
     void ChangeState(S index)
