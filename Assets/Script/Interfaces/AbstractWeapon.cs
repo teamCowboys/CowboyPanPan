@@ -32,7 +32,7 @@ public abstract class AbstractWeapon : AbstractPickable {
         reloading = false;
     }
 
-    public void Shoot()
+    public void Shoot(int ShooterID)
     {
         Debug.Log("shoot");
         if (reloading)
@@ -45,7 +45,7 @@ public abstract class AbstractWeapon : AbstractPickable {
             IDestroyable component = hit.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
             if (component!= null)
             {
-                component.applyDamage(damage);
+                component.applyDamage(damage, ShooterID);
             }
         }
 

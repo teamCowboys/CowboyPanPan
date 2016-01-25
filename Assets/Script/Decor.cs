@@ -5,8 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider))]
 public class Decor : MonoBehaviour,IDestroyable {
 
+    public int scoreValue = 100;
 
-	public float maxHealthPoints;
+    public float maxHealthPoints;
     public float healthPoints;
 	public GameObject loot;
 	float T1;
@@ -85,11 +86,17 @@ public class Decor : MonoBehaviour,IDestroyable {
 		}
 	}
 
-    public void applyDamage(float damage)
+    public void applyDamage(float damage, int killerID=-1)
     {
         healthPoints -= damage;
 		timeShake = 0.5f;
-		if (healthPoints <= 0){Death();}
+		if (healthPoints <= 0){
+            if (killerID != -1)
+            {
+                PlayerManager.Instance.addScore(killerID,scoreValue);
+            }
+            Death();
+        }
     }
 
 	public void shake()
@@ -101,6 +108,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 
     public void Death()
     {
+
 		if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
         Destroy(gameObject);
     }

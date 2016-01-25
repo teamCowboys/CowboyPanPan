@@ -10,6 +10,8 @@ enum S
 };
 
 public class Enemy : IEnnemy {
+
+    public int value = 100;
     public IEnemyState currentState;
     public IEnemyState[] state;
     public bool canHide = false;
@@ -20,11 +22,21 @@ public class Enemy : IEnnemy {
      
     // Use this for initialization
     void Start () {
+        this.GetComponent<BoxCollider>().enabled = true;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = true;
         if (canMove)
             canHide = false;
         isHiding = false;
         currentState = state[(int)S.SHOOT];
         fight();
+    }
+
+    public void Spawn(int Life =2, int scoreValue=100)
+    {
+        value = scoreValue;
+        lifePoints = Life;
+        this.GetComponent<BoxCollider>().enabled = true;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = true;
     }
 	
 	// Update is called once per frame
@@ -70,12 +82,13 @@ public class Enemy : IEnnemy {
         currentState.Init(this.gameObject);
     }
 
-    public override void applyDamage(float dmg)
+    public override void applyDamage(float dmg, int killerID)
     {
         if (lifePoints <= dmg)
         {
-            // Die
-            Debug.Log("Die");
+            lifePoints = 0;
+
+            PlayerManager.Instance.applyScoring(killerID, value);
             Death();
         }
         else
@@ -89,5 +102,9 @@ public class Enemy : IEnnemy {
     {
         ChangeState(S.DEAD);
 
+        // GROSSE EXPLOSION
+        this.GetComponent<BoxCollider>().enabled = false;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
+    
 }

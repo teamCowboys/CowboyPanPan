@@ -23,9 +23,16 @@ public partial class PlayerManager : MonoBehaviour
         StartCoroutine(comboDecrease(1));
     }
 
+    public void applyScoring(int playerID, int amount)
+    {
+        addCombo(playerID, 1);
+        addScore(playerID, amount);
+    }
+
     // Augmente le score du joueur OU du combo
     public void addScore(int playerID, int amount)
     {
+        
         lastTimeScore[playerID] = Time.time;
         if (comboMultiplicateur[playerID] > 0)
         {
@@ -35,6 +42,7 @@ public partial class PlayerManager : MonoBehaviour
         }
         else
         {
+            
             scoreValue[playerID] += amount;
             UIManager.Instance.DisplayScore(playerID, scoreValue[playerID]);
         }

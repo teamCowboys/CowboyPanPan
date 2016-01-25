@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, IDestroyable{
 	void Update () {
         if(Input.GetButtonDown("Fire"+playerId))
         {
-            currentWeapon.Shoot();
+            currentWeapon.Shoot(playerId);
             lastShot = Time.time;
         }
         if (Time.time > lastShot + smokeDuration)
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour, IDestroyable{
 
     }
 
-    public void applyDamage(float damage)
+    public void applyDamage(float damage, int killerID = -1)
     {
         healthPoint -= damage;
 
