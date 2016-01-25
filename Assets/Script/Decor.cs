@@ -8,13 +8,18 @@ public class Decor : MonoBehaviour,IDestroyable {
 
 	public float maxHealthPoints;
     public float healthPoints;
-	public float T1;
-	public float T2;
-	public float T3;
+	public GameObject loot;
+	float T1;
+	float T2;
+	float T3;
 	Sprite ST1;
 	Sprite ST2;
 	Sprite ST3;
 	string phase;
+	GameObject child;
+	float valueShake;
+	float timeShake;
+	Vector3 startPos;
 
     void Awake()
     {
@@ -24,44 +29,79 @@ public class Decor : MonoBehaviour,IDestroyable {
 
 	void Start () 
 	{
-		if (this.transform.childCount < 1 || !this.transform.GetChild(0).GetComponent<SpriteRenderer>())
-		{
-			GameObject child = new GameObject();
-			child.AddComponent<SpriteRenderer>();
-			child.name = "CrackSprite";
-			child.GetComponent<SpriteRenderer>().sortingOrder = 2;
-			child.transform.parent = this.gameObject.transform;
-			child.transform.position = new Vector3(0,0,0);
-			Debug.Log(child.transform.position);
-		}
 		healthPoints = maxHealthPoints;
 		T1 = maxHealthPoints / 4;
 		T2 = T1 * 2;
 		T3 = T1 * 3;
-		ST1 = Resources.Load ("Graph/Crack/Crack3") as Sprite;
-		ST2 = Resources.Load ("Graph/Crack/Crack2") as Sprite;
-		ST3 = Resources.Load ("Graph/Crack/Crack1") as Sprite;
+
+		child = new GameObject ();
+		child.name = "CrackSprite";
+		child.AddComponent<SpriteRenderer> ();
+		child.GetComponent<SpriteRenderer> ().sortingOrder = this.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
+		child.transform.parent = this.gameObject.transform;
+		child.transform.localPosition = new Vector3(0,0,0);
+		Vector3 boxScale = this.gameObject.GetComponent<BoxCollider> ().size;
+		boxScale.x -= 0.4f;
+		boxScale.y -= 0.4f;
+		child.transform.localScale = boxScale;
+
+		GameObject prefab;
+		prefab = Resources.Load ("Crack3") as GameObject;
+		ST1 = prefab.GetComponent<SpriteRenderer> ().sprite;
+		prefab = Resources.Load ("Crack2") as GameObject;
+		ST2 = prefab.GetComponent<SpriteRenderer> ().sprite;
+		prefab = Resources.Load ("Crack1") as GameObject;
+		ST3 = prefab.GetComponent<SpriteRenderer> ().sprite;
+
 		phase = "T4";
+
+		startPos = this.gameObject.transform.position;
 	}
 	
 	void Update () 
 	{
-		if (Input.GetKeyDown(KeyCode.A)) {applyDamage(0.5f);}
+		if (Input.GetKeyDown(KeyCode.P)) {applyDamage(0.5f);}
 
+		valueShake = Mathf.Sin (Time.time * 50.0f);
+		timeShake -= Time.deltaTime;
 
-		if (healthPoints <= T3 && phase != "T3"){this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = ST3;phase = "T3";}
-		else if (healthPoints <= T2 && phase != "T2"){this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = ST2;phase = "T2";}
-		else if (healthPoints <= T1 && phase != "T1"){this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = ST1;phase = "T1";}
+		if (timeShake > 0){shake();}
+		else{this.gameObject.transform.position = startPos;}
+
+		if (healthPoints <= T3 && phase == "T4")
+		{
+			child.GetComponent<SpriteRenderer>().sprite = ST3;
+			phase = "T3";
+		}
+		else if (healthPoints <= T2 && phase == "T3")
+		{
+			child.GetComponent<SpriteRenderer>().sprite = ST2;
+			phase = "T2";
+		}
+		else if (healthPoints <= T1 && phase == "T2")
+		{
+			child.GetComponent<SpriteRenderer>().sprite = ST1;
+			phase = "T1";
+		}
 	}
 
     public void applyDamage(float damage)
     {
         healthPoints -= damage;
+		timeShake = 0.5f;
 		if (healthPoints <= 0){Death();}
     }
 
+	public void shake()
+	{
+		Vector3 test = startPos;
+		test.x += valueShake/50;
+		this.gameObject.transform.localPosition = test;
+	}
+
     public void Death()
     {
+		if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
         Destroy(gameObject);
     }
 }
