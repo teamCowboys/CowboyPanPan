@@ -5,12 +5,12 @@ using System;
 public abstract class AbstractWeapon : AbstractPickable {
 
     public EnumerationGun.GunType type;
-    public float maxAmmo = 100.0f;
-    public float chargeurMax = 10.0f;
-    public float chargeurCurrent = 0.0f;
-    public float damage = 10.0f;
-    public float fireRate = 0.2f;
-    public float reloadingTime = 1.0f;
+    public float maxAmmo;
+    public float chargeurMax;
+    public float chargeurCurrent;
+    public float damage;
+    public float fireRate;
+    public float reloadingTime;
     private bool reloading = false;
     public Sprite cursor;
 
@@ -20,13 +20,14 @@ public abstract class AbstractWeapon : AbstractPickable {
     {
         base.Init();
         chargeurCurrent = chargeurMax;
+        maxAmmo -= chargeurCurrent;
     }
 
     public IEnumerator Reload()
     {
         reloading = true;
         yield return new WaitForSeconds(reloadingTime);
-        chargeurCurrent = maxAmmo>chargeurMax?chargeurMax:maxAmmo%chargeurMax;
+        chargeurCurrent = maxAmmo>chargeurMax?chargeurMax:maxAmmo;
         maxAmmo -= chargeurCurrent;
         reloading = false;
     }
