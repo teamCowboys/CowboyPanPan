@@ -4,36 +4,24 @@ using System.Collections;
 public class Player : MonoBehaviour, IDestroyable{
 
     [Header("Weapon")]
-    public IWeapon currentWeapon;
+    public AbstractWeapon currentWeapon;
 
     [Header("Stats")]
+    public int playerId;
     public float healthPoint;
     public float maxHealthPoint;
 
-    [Header("Cursor")]
-    public Vector3 cursorPosition;
-    public Texture cursorTexture = null;
-    private Vector3 ScreenPos;
+ 
 
     void Awake()
     {
         Gun gun = gameObject.AddComponent<Gun>();
-        gun.AttachTo(gameObject);
+        gun.AttachTo(gameObject,typeof(Gun));
         healthPoint = maxHealthPoint;
-        cursorPosition = Camera.main.WorldToScreenPoint(transform.position);
 
     }
 
-    void OnGUI()
-    {
-        if(cursorTexture)
-        {
-            Vector3 ScreenPos = Camera.main.WorldToScreenPoint(transform.position);
-            float posx = Mathf.Clamp((-cursorTexture.width / 2f) + ScreenPos.x, (-cursorTexture.width / 2f), Screen.width - (cursorTexture.width / 2f));
-            float posy = Mathf.Clamp(Screen.height - ScreenPos.y - (cursorTexture.height / 2f), (-cursorTexture.height / 2f), Screen.height - (cursorTexture.height / 2f));
-            GUI.DrawTexture(new Rect(posx,posy, cursorTexture.width, cursorTexture.height), cursorTexture);
-        }
-    }
+    
 	// Use this for initialization
 	void Start () {
 
@@ -41,38 +29,50 @@ public class Player : MonoBehaviour, IDestroyable{
 	
 	// Update is called once per frame
 	void Update () {
-        /*if (Input.GetMouseButton(0))
-            currentWeapon.Shoot();*/
-	}
+        if(Input.GetButtonDown("Fire"+playerId))
+        {
+            currentWeapon.Shoot();
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hitInfo = new RaycastHit();
+            Debug.Log("mouse position " + Input.mousePosition+" Cursor position "+ GetComponent<PlayerAim>().getCursorPosition());
+            //if (Physics.Raycast(Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition()), out hitInfo))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
+            {
+                IDestroyable test = hitInfo.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
+                test.applyDamage(5);
+            }
+        }
+    }
 
     public void ChangeGun(EnumerationGun.GunType typeOfGun)
     {
-        IWeapon weapon = null;
+        System.Type type = null;
         switch(typeOfGun)
         {
             case EnumerationGun.GunType.GUN:
-                weapon = new Gun();
+                type = typeof(Gun);
                 break;
-            /*case EnumerationGun.GunType.LASERGUN:
-                weapon = new LaserGun();
+            case EnumerationGun.GunType.LASERGUN:
+                type = typeof(LaserGun);
                 break;
-            case EnumerationGun.GunType.SHOTGUN:
+            /*case EnumerationGun.GunType.SHOTGUN:
                 weapon = new shotGun();
                 break;
             case EnumerationGun.GunType.SNIPER:
                 weapon = new Sniper();
                 break;*/
         }
-        ChangeGun(weapon);
+        ChangeGun(type);
 
 
     }
 
-    public void ChangeGun(IWeapon nextGun)
+    public void ChangeGun(System.Type type)
     {
-        Destroy(currentWeapon);
-        nextGun.AttachTo(gameObject); 
-        healthPoint = maxHealthPoint;
+        AbstractWeapon nextGun = (AbstractWeapon)gameObject.AddComponent(type);
+        nextGun.AttachTo(gameObject,type);
 
     }
 

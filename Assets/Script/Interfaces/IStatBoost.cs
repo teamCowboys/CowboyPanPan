@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IStatBoost : MonoBehaviour {
+public class IStatBoost : IBoost{
 
 	// Use this for initialization
 	void Start () {

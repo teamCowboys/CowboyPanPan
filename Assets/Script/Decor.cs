@@ -11,7 +11,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 
     void Awake()
     {
-        gameObject.layer = LayerMask.NameToLayer("Destroyable");
+        //gameObject.layer = LayerMask.NameToLayer("Destroyable");
         GetComponent<Rigidbody>().useGravity = false;
     }
 	void Start () {
