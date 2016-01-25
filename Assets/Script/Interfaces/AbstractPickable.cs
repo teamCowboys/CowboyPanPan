@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public abstract class AbstractPickable : MonoBehaviour,IPickable {
+public abstract class AbstractPickable : MonoBehaviour {
     public GameObject[] players;
     public bool Picked = false;
 
@@ -14,7 +14,7 @@ public abstract class AbstractPickable : MonoBehaviour,IPickable {
         Init();
     }
 
-    public void Init()
+    public virtual void Init()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
     }
@@ -24,7 +24,11 @@ public abstract class AbstractPickable : MonoBehaviour,IPickable {
         foreach (GameObject p in players)
         {
             if (Vector3.Distance(transform.position, p.transform.position) < CollisionDistance)
+            {
                 GiveTo(p.GetComponent<Player>());
+                if(gameObject.tag != "Player")
+                    Destroy(gameObject);
+            }
         }
     }
 
@@ -32,6 +36,7 @@ public abstract class AbstractPickable : MonoBehaviour,IPickable {
 
     void Update()
     {
-        throw new NotImplementedException();
+        if (!Picked)
+            checkCollisionWithPlayers();
     }
 }

@@ -22,9 +22,9 @@ public class PlayerAim : MonoBehaviour {
     void Update () {
         float h = Input.GetAxisRaw("Horizontal " + playerId);
         float v = Input.GetAxisRaw("Vertical " + playerId);
-        if (Mathf.Abs(h) > 0.6f)
+        if (Mathf.Abs(h) > 0.8f)
             cursorPosition.x += h * cursorSensibility * Time.deltaTime;
-        if (Mathf.Abs(v) > 0.6f)
+        if (Mathf.Abs(v) > 0.8f)
             cursorPosition.y -= v * cursorSensibility * Time.deltaTime;
         Vector3 newPos = Camera.main.ScreenToWorldPoint(cursorPosition);
         newPos.z = 0;

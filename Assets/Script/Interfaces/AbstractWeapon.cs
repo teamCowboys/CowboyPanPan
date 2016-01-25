@@ -2,28 +2,21 @@
 using System.Collections;
 using System;
 
-public abstract class AbstractWeapon : AbstractPickable,IWeapon {
-    public void AttachTo(GameObject obj)
-    {
-        throw new NotImplementedException();
-    }
+public abstract class AbstractWeapon : AbstractPickable {
 
-    public void Awake()
-    {
-        throw new NotImplementedException();
-    }
+    public EnumerationGun.GunType type;
+    public float maxAmmo = 100.0f;
+    public float chargeurMax = 10.0f;
+    public float chargeurCurrent = 0.0f;
+    public float damage = 10.0f;
+    public float fireRate = 0.2f;
+    public float reloadingTime = 1.0f;
+    private bool reloading = false;
+    public Sprite cursor;
 
-    public void checkCollisionWithPlayers()
-    {
-        throw new NotImplementedException();
-    }
 
-    public void GiveTo(Player player)
-    {
-        throw new NotImplementedException();
-    }
 
-    public void Init()
+    public override void Init()
     {
         base.Init();
         chargeurCurrent = chargeurMax;
@@ -31,7 +24,11 @@ public abstract class AbstractWeapon : AbstractPickable,IWeapon {
 
     public IEnumerator Reload()
     {
-        throw new NotImplementedException();
+        reloading = true;
+        yield return new WaitForSeconds(reloadingTime);
+        chargeurCurrent = maxAmmo>chargeurMax?chargeurMax:maxAmmo%chargeurMax;
+        maxAmmo -= chargeurCurrent;
+        reloading = false;
     }
 
     public void Shoot()
@@ -39,37 +36,48 @@ public abstract class AbstractWeapon : AbstractPickable,IWeapon {
         Debug.Log("shoot");
         if (reloading)
             return;
+        chargeurCurrent--;
         Ray ray = Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray,out hit))
         {
             IDestroyable component = hit.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
-            if (component != null)
+            if (component!= null)
             {
                 component.applyDamage(damage);
-                chargeurCurrent--;
             }
         }
 
         if (chargeurCurrent == 0)
         {
-            StartCoroutine(Reload());
-
+            if(maxAmmo == 0)
+                GetComponent<Player>().ChangeGun(EnumerationGun.GunType.GUN);
+            else
+                StartCoroutine(Reload());
         }
+        
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-
-    void IPickable.Update()
+    public void SetPicked(bool value)
     {
-        throw new NotImplementedException();
+        Picked = value;
     }
 
-    // Update is called once per frame
-    void Update () {
-	
-	}
+
+
+    public void AttachTo(GameObject obj,System.Type type)
+    {
+        Player player = obj.GetComponent<Player>();
+        if(player.currentWeapon)
+            Destroy(player.currentWeapon);
+        if (!obj.GetComponent(type))
+            player.currentWeapon = (AbstractWeapon)obj.AddComponent(type);
+        else
+            player.currentWeapon = (AbstractWeapon)obj.GetComponent(type);
+        player.currentWeapon.SetPicked(true);
+        obj.GetComponent<PlayerAim>().cursor.sprite = cursor;
+    }
+
+
+
 }

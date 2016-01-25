@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour, IDestroyable{
 
     [Header("Weapon")]
-    public IWeapon currentWeapon;
+    public AbstractWeapon currentWeapon;
 
     [Header("Stats")]
     public int playerId;
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IDestroyable{
     void Awake()
     {
         Gun gun = gameObject.AddComponent<Gun>();
-        gun.AttachTo(gameObject);
+        gun.AttachTo(gameObject,typeof(Gun));
         healthPoint = maxHealthPoint;
 
     }
@@ -37,7 +37,8 @@ public class Player : MonoBehaviour, IDestroyable{
         {
             RaycastHit hitInfo = new RaycastHit();
             Debug.Log("mouse position " + Input.mousePosition+" Cursor position "+ GetComponent<PlayerAim>().getCursorPosition());
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition()), out hitInfo))
+            //if (Physics.Raycast(Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition()), out hitInfo))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
             {
                 IDestroyable test = hitInfo.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
                 test.applyDamage(5);
@@ -47,31 +48,31 @@ public class Player : MonoBehaviour, IDestroyable{
 
     public void ChangeGun(EnumerationGun.GunType typeOfGun)
     {
-        IWeapon weapon = null;
+        System.Type type = null;
         switch(typeOfGun)
         {
             case EnumerationGun.GunType.GUN:
-                weapon = new Gun();
+                type = typeof(Gun);
                 break;
-            /*case EnumerationGun.GunType.LASERGUN:
-                weapon = new LaserGun();
+            case EnumerationGun.GunType.LASERGUN:
+                type = typeof(LaserGun);
                 break;
-            case EnumerationGun.GunType.SHOTGUN:
+            /*case EnumerationGun.GunType.SHOTGUN:
                 weapon = new shotGun();
                 break;
             case EnumerationGun.GunType.SNIPER:
                 weapon = new Sniper();
                 break;*/
         }
-        ChangeGun(weapon);
+        ChangeGun(type);
 
 
     }
 
-    public void ChangeGun(IWeapon nextGun)
+    public void ChangeGun(System.Type type)
     {
-        Destroy(currentWeapon);
-        nextGun.AttachTo(gameObject); 
+        AbstractWeapon nextGun = (AbstractWeapon)gameObject.AddComponent(type);
+        nextGun.AttachTo(gameObject,type);
 
     }
 
