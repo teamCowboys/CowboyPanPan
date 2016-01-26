@@ -5,8 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider))]
 public class Decor : MonoBehaviour,IDestroyable {
 
+    public int scoreValue = 100;
 
-	public float maxHealthPoints;
+    public float maxHealthPoints;
     public float healthPoints;
 	public GameObject loot;
 	public bool notInvolved;
@@ -102,11 +103,21 @@ public class Decor : MonoBehaviour,IDestroyable {
 		if (healthPoints <= 0){Death();}
 	}
 
-    public void applyDamage(float damage)
+    public void applyDamage(float damage, int killerID=-1)
     {
         healthPoints -= damage;
 		timeShake = 0.5f;
+<<<<<<< HEAD
 		if (healthPoints <= 0 && notInvolved){Destroy(this.gameObject);}
+=======
+		if (healthPoints <= 0){
+            if (killerID != -1)
+            {
+                PlayerManager.Instance.applyScoringDecor(killerID,scoreValue);
+            }
+            Death();
+        }
+>>>>>>> origin/Will
     }
 
 	public void shake()
@@ -118,6 +129,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 
     public void Death()
     {
+<<<<<<< HEAD
         GetComponent<Rigidbody>().isKinematic = true;
         if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
 
@@ -127,5 +139,10 @@ public class Decor : MonoBehaviour,IDestroyable {
 		child.GetComponent<SpriteRenderer> ().enabled = false;
 		Destroy (this.gameObject.GetComponentInChildren<ParticleSystem> ());
 		if (this.gameObject.transform.position.y < -10){Destroy(this.gameObject);}
+=======
+
+		if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
+        Destroy(gameObject);
+>>>>>>> origin/Will
     }
 }
