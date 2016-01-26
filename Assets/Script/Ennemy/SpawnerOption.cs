@@ -6,6 +6,7 @@ public class SpawnerOption : MonoBehaviour {
     public float waitBetweenSpawn = 1f;
     public int layerID = 1;
     public int numberToSpawn = 10;
+    public int waveToSpawn = 3;
     public bool canMove;
     public bool moveRight;
     public bool canHide;
@@ -54,8 +55,10 @@ public class SpawnerOption : MonoBehaviour {
     {
         if (spawnWithoutWaiting)
         {
-            while (numberToSpawn > 0)
+            int wave = waveToSpawn;
+            while (wave > 0&&numberToSpawn>0)
             {
+                wave--;
                 yield return new WaitForSeconds(waitBetweenSpawn);
                 numberToSpawn--;
                 current = ((GameObject)Instantiate(prefabEnnemy, trsm.position, prefabEnnemy.transform.rotation)).GetComponent<Ennemy>();

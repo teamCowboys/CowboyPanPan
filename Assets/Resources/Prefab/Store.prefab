@@ -20,6 +20,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &166020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 444520}
+  - 114: {fileID: 11417584}
+  m_Layer: 0
+  m_Name: Spawner (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444520
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.0190303419, y: .735535145, z: -1}
+  m_LocalScale: {x: .38060537, y: .337401479, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490136}
+  m_RootOrder: 0
 --- !u!4 &490136
 Transform:
   m_ObjectHideFlags: 1
@@ -29,7 +57,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.17999983, y: .610000014, z: 0}
   m_LocalScale: {x: 2.62739325, y: 2.96382809, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 444520}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!54 &5447062
@@ -71,6 +100,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .448916167, y: .15040873, z: .200000003}
   m_Center: {x: -.0101757823, y: .669795275, z: 0}
+--- !u!114 &11417584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb1f4623110cad42a3539b38e7597e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitBetweenSpawn: 1
+  layerID: 0
+  numberToSpawn: 10
+  canMove: 0
+  moveRight: 0
+  canHide: 1
+  spawnWithoutWaiting: 0
+  LifePoints: 2
+  scoreValue: 100
+  shootRate: 2
+  speed: 1
+  prefabEnnemy: {fileID: 175498, guid: 3e21cbffcfbab3f46a8417c7b811d8c8, type: 2}
 --- !u!114 &11487082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06cb0e3a9b2c214988624fc51881458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreValue: 100
   maxHealthPoints: 30
   healthPoints: 0
   loot: {fileID: 0}

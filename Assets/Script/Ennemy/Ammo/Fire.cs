@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Fire : MonoBehaviour {
+public class Fire : MonoBehaviour, IDestroyable
+{
     int damage;
     public float speed;
     public Vector3 direction;
@@ -43,8 +45,9 @@ public class Fire : MonoBehaviour {
         //this.transform.position = new Vector3(pos.x+direction.x * speed*Time.deltaTime , pos.y + direction.y * speed * Time.deltaTime, pos.z );
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter(Collider col)
     {
+        Debug.Log(col.tag);
         if (col.tag == "Player")
         {
             IDestroyable target = col.GetComponent(typeof(IDestroyable)) as IDestroyable;
@@ -52,5 +55,15 @@ public class Fire : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
+    }
+
+    public void applyDamage(float damage, int killerID = -1)
+    {
+        Death();
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }
