@@ -49,8 +49,12 @@ public abstract class AbstractWeapon : AbstractPickable {
             if (component!= null)
             {
                 component.applyDamage(damage, ShooterID);
-                GameObject inst = Instantiate(bulletHole, hit.point, bulletHole.transform.rotation) as GameObject;
-                inst.transform.parent = hit.collider.transform;
+                if(hit.collider.tag != "enemy")
+                {
+                    GameObject inst = Instantiate(bulletHole, hit.point, bulletHole.transform.rotation) as GameObject;
+                    inst.transform.parent = hit.collider.transform;
+
+                }
                 //component.applyDamage(damage);
             }
         }

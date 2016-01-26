@@ -50,6 +50,7 @@ public partial class PlayerManager : MonoBehaviour {
 
     public bool UseCredit(int playerID)
     {
+        playerID--;
         bool creditUsed;
         PlayerCredit[playerID]--;
         UIManager.Instance.DisplayCredit(playerID, PlayerCredit[playerID]);

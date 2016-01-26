@@ -47,8 +47,6 @@ public class Player : MonoBehaviour, IDestroyable{
             ChangeGun(EnumerationGun.GunType.SNIPER);
         if (currentWeapon.isAuto)
         {
-            currentWeapon.Shoot(playerId);
-            lastShot = Time.time;
             if (Input.GetButtonDown("Fire" + playerId) && Time.time > lastShot + currentWeapon.fireRate)
             {
                 AudioSource audio = GetComponent<AudioSource>();
@@ -69,7 +67,7 @@ public class Player : MonoBehaviour, IDestroyable{
         }
         else
         {
-            if(Input.GetButtonDown("Fire"+playerId) && Time.time > lastShot + currentWeapon.fireRate)
+            if(Input.GetButtonDown("Fire"+playerId))
             {
                 currentWeapon.Shoot(playerId);
                 lastShot = Time.time;

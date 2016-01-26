@@ -26,3 +26,7 @@ public class LaserGun : AbstractWeapon {
             Destroy(gameObject);
     }
 }
+
+
+
+
