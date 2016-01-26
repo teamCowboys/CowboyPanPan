@@ -33,7 +33,7 @@ public class Move : IEnemyState
         if (badboy.position.x >15 || badboy.position.x < -15)
         {
 
-            Destroy(badboy.gameObject);
+            badboy.GetComponent<Ennemy>().lifePoints = 0;
         }
     }
 
@@ -76,7 +76,7 @@ public class Move : IEnemyState
         Vector3 dir = target[rnd].transform.position - this.badboy.position;
         dir.Normalize();
 
-        go.GetComponent<Fire>().Init(dir);
+        go.GetComponent<Fire>().Init(dir, badboy.GetComponent<Ennemy>().damage);
         lastShoot = 0;
 
     }

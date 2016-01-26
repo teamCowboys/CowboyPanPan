@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Fire : MonoBehaviour {
-    
+    int damage;
     public float speed;
     public Vector3 direction;
     public Transform trs;
@@ -24,10 +24,10 @@ public class Fire : MonoBehaviour {
         }
 	}
 
-    public void Init( Vector3 dir)
+    public void Init( Vector3 dir, int dmg )
     {
+        damage = dmg;
 
-        
         trs = this.gameObject.GetComponent<Transform>();
         isReady = true;
         direction = dir;
@@ -41,5 +41,16 @@ public class Fire : MonoBehaviour {
         
         //this.transform.position = Vector3.Lerp(this.transform.position, direction, 0.01f);
         //this.transform.position = new Vector3(pos.x+direction.x * speed*Time.deltaTime , pos.y + direction.y * speed * Time.deltaTime, pos.z );
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            IDestroyable target = col.GetComponent(typeof(IDestroyable)) as IDestroyable;
+            target.applyDamage(damage);
+            Destroy(this.gameObject);
+        }
+
     }
 }

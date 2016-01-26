@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour {
     public GameObject[] PlayerUI = { null, null };
     Text[] scoreUI = { null, null };
     Text[] comboUI = { null, null };
+    Text[] creditUI = { null, null };
     RectTransform[] trsCombo = { null, null };
     int[] corotineCount = { 0, 0 };
     bool[] isComboMultSliding = { false, false };
@@ -39,15 +40,22 @@ public class UIManager : MonoBehaviour {
     void InitScore()
     {
         if (PlayerUI[0] == null) PlayerUI[0] = GameObject.Find("Player1UI");
-        if (PlayerUI[0] == null) PlayerUI[0] = GameObject.Find("Player2UI");
+        if (PlayerUI[1] == null) PlayerUI[1] = GameObject.Find("Player2UI");
         scoreUI[0] = GameObject.Find("PlayerScore1").GetComponent<Text>();
         scoreUI[1] = GameObject.Find("PlayerScore2").GetComponent<Text>();
         comboUI[0] = GameObject.Find("PlayerCombo1").GetComponent<Text>();
         comboUI[1] = GameObject.Find("PlayerCombo2").GetComponent<Text>();
+        creditUI[0] = GameObject.Find("Credit1").GetComponent<Text>();
+        creditUI[1] = GameObject.Find("Credit2").GetComponent<Text>();
         scoreUI[0].text = "0";
         scoreUI[1].text = "0";
         DisplayCombo(0, 0, 0);
         DisplayCombo(1, 0, 0);
+    }
+
+    public void DisplayCredit(int tabID, int value)
+    {
+        creditUI[tabID].text = "Credit: "+value;
     }
 
     public void DisplayScore(int tabID, long score)

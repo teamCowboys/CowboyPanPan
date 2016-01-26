@@ -9,7 +9,6 @@ public class Shoot : IEnemyState
     Vector3 directionShoot;
     Vector3 directionMove;
     public float shootRate = 0.5f;
-    public float speed = 1;
     float lastShoot;
     bool canMove ;
 
@@ -46,7 +45,7 @@ public class Shoot : IEnemyState
         Vector3 dir = target[rnd].transform.position - this.badboy.position;
         dir.Normalize();
 
-        go.GetComponent<Fire>().Init(dir);
+        go.GetComponent<Fire>().Init(dir, badboy.GetComponent<Ennemy>().damage);
         lastShoot = 0;
 
     }

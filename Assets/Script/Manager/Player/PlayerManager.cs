@@ -48,16 +48,22 @@ public partial class PlayerManager : MonoBehaviour {
         }
     }
 
-    public void CreditLost(int playerID)
+    public bool UseCredit(int playerID)
     {
+        bool creditUsed;
         PlayerCredit[playerID]--;
-        if(PlayerCredit[playerID] == 0)
+        UIManager.Instance.DisplayCredit(playerID, PlayerCredit[playerID]);
+
+        if (PlayerCredit[playerID] == 0)
         {
+            creditUsed = false;
             // Loser
         }
         else
         {
+            creditUsed = true;
             // Another Try
         }
+        return creditUsed;
     }
 }

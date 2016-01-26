@@ -9,8 +9,8 @@ enum S
     MOVE = 3,
 };
 
-public class Enemy : IEnnemy {
-
+public class Ennemy : IEnnemy {
+    public int damage = 1;
     public int value = 100;
     public IEnemyState currentState;
     public IEnemyState[] state;
@@ -19,6 +19,12 @@ public class Enemy : IEnnemy {
     public float lifePoints= 2;                               // shoot needed before killing him
     float shootDuration;
     bool isHiding;
+
+    void Awake()
+    {
+        currentState = state[(int)S.SHOOT];
+        isHiding = false;
+    }
      
     // Use this for initialization
     void Start () {
@@ -26,8 +32,8 @@ public class Enemy : IEnnemy {
         this.GetComponentInChildren<SpriteRenderer>().enabled = true;
         if (canMove)
             canHide = false;
-        isHiding = false;
-        currentState = state[(int)S.SHOOT];
+        
+        
         fight();
     }
 
@@ -46,7 +52,7 @@ public class Enemy : IEnnemy {
         
 	}
 
-    void fight()
+    public void fight()
     {
         if (canMove)
         {
@@ -62,16 +68,20 @@ public class Enemy : IEnnemy {
     {
         if (canHide && !isHiding)
         {
-            StartCoroutine(Hidingtime(Random.Range(1, 5)));
+            StartCoroutine(Hidingtime(Random.Range(1, 6)));
         }            
     }
 
     IEnumerator Hidingtime(float time)
     {
+        this.GetComponent<BoxCollider>().enabled = false;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = false;
         isHiding = true;
         ChangeState(S.HIDE);
         yield return new WaitForSeconds(time);
         isHiding = false;
+        this.GetComponent<BoxCollider>().enabled = true;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = true;
         fight();
     }
 

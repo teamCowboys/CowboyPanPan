@@ -45,14 +45,14 @@ public class Player : MonoBehaviour, IDestroyable{
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo = new RaycastHit();
-            Debug.Log("mouse position " + Input.mousePosition+" Cursor position "+ GetComponent<PlayerAim>().getCursorPosition());
+            //Debug.Log("mouse position " + Input.mousePosition+" Cursor position "+ GetComponent<PlayerAim>().getCursorPosition());
             //if (Physics.Raycast(Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition()), out hitInfo))
             
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
             {
                
                 IDestroyable test = hitInfo.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
-                test.applyDamage(5);
+                test.applyDamage(5, playerId);
                 Debug.Log("Attack");
             }
         }
@@ -90,12 +90,30 @@ public class Player : MonoBehaviour, IDestroyable{
 
     public void applyDamage(float damage, int killerID = -1)
     {
+        
         healthPoint -= damage;
+        if (healthPoint <= 0)
+        {
+            Death();
+        }
+            
 
     }
 
     public void Death()
     {
         // do nothing yet
+        // use Credit & respawn
+
+        bool isCreditLeft = PlayerManager.Instance.UseCredit(playerId);
+        if (!isCreditLeft)
+        {
+            // Can't Respawn
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            healthPoint = maxHealthPoint;
+        }
     }
 }
