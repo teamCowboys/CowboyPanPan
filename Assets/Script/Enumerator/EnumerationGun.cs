@@ -8,7 +8,8 @@ public class EnumerationGun {
         GUN,
         SHOTGUN,
         LASERGUN,
-        SNIPER
+        SNIPER,
+        MINIGUN
 
     }
 }
