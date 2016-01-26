@@ -11,6 +11,7 @@ enum S
 
 public class Ennemy : IEnnemy {
     SpriteRenderer renderer;
+    public GameObject loot;
     public int damage = 1;
     public int value = 100;
     public IEnemyState currentState;
