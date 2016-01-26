@@ -17,8 +17,6 @@ public class Shoot : IEnemyState
         lastShoot += Time.deltaTime;
         if (lastShoot > shootRate)
         {
-            Debug.Log("SHOOT");
-
             PullTheTrigger();
         }
     }

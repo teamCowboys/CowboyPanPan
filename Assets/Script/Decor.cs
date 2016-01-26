@@ -93,7 +93,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 		if (healthPoints <= 0){
             if (killerID != -1)
             {
-                PlayerManager.Instance.addScore(killerID,scoreValue);
+                PlayerManager.Instance.applyScoringDecor(killerID,scoreValue);
             }
             Death();
         }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Move : IEnemyState
 {
-
+    public SpriteRenderer renderer;
     public GameObject Ammo;
     Transform badboy;
     Vector3 directionShoot;
@@ -19,23 +19,18 @@ public class Move : IEnemyState
         lastShoot += Time.deltaTime;
         if (lastShoot > shootRate)
         {
-            Debug.Log("SHOOT");
-
             PullTheTrigger();
         }
-        leaveScreen();
+        OutOfScreen();
         Moving();
         
     }
-
-    void leaveScreen()
+    void OutOfScreen()
     {
-        if (badboy.position.x >15 || badboy.position.x < -15)
-        {
-
-            badboy.GetComponent<Ennemy>().lifePoints = 0;
-        }
+        if(!badboy.gameObject.GetComponent<Ennemy>().GetRendererVisible())
+        Destroy(badboy.gameObject);
     }
+    
 
     public override void Stop()
     {
@@ -61,7 +56,7 @@ public class Move : IEnemyState
     {
 
         Vector3 pos = badboy.position;
-        badboy.transform.position += directionMove*Time.deltaTime ;
+        badboy.transform.position += directionMove*Time.deltaTime*speed ;
 
     }
 

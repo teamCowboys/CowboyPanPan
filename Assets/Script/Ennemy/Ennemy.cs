@@ -10,6 +10,7 @@ enum S
 };
 
 public class Ennemy : IEnnemy {
+    SpriteRenderer renderer;
     public int damage = 1;
     public int value = 100;
     public IEnemyState currentState;
@@ -24,6 +25,7 @@ public class Ennemy : IEnnemy {
     {
         currentState = state[(int)S.SHOOT];
         isHiding = false;
+        
     }
      
     // Use this for initialization
@@ -32,8 +34,8 @@ public class Ennemy : IEnnemy {
         this.GetComponentInChildren<SpriteRenderer>().enabled = true;
         if (canMove)
             canHide = false;
-        
-        
+
+        renderer = GetComponentInChildren<SpriteRenderer>();
         fight();
     }
 
@@ -44,11 +46,17 @@ public class Ennemy : IEnnemy {
         this.GetComponent<BoxCollider>().enabled = true;
         this.GetComponentInChildren<SpriteRenderer>().enabled = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        currentState.Run();
 
+    public bool GetRendererVisible()
+    {
+        return renderer.isVisible;
+    }
+    
+
+    // Update is called once per frame
+    void Update () {
+        currentState.Run();
+        
         
 	}
 

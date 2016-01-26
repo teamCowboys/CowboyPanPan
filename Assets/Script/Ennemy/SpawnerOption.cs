@@ -2,17 +2,18 @@
 using System.Collections;
 
 public class SpawnerOption : MonoBehaviour {
-    public float startDelaySpawn = 0.0f;
+    //public float startDelaySpawn = 0.0f;
     public float waitBetweenSpawn = 1f;
     public int layerID = 1;
     public int numberToSpawn = 10;
     public bool canMove;
     public bool moveRight;
     public bool canHide;
-    
+    public bool spawnWithoutWaiting;
     public int LifePoints=0 ;
     public int scoreValue = 0;
-
+    public float shootRate = 2;
+    public float speed = 1;
     public GameObject prefabEnnemy;
     Ennemy current;
 
@@ -36,6 +37,8 @@ public class SpawnerOption : MonoBehaviour {
         {
             randomScore = false;
         }
+        if (!canMove)
+            spawnWithoutWaiting = false;
         StartCoroutine(Spawn());
     }
 	
@@ -49,20 +52,27 @@ public class SpawnerOption : MonoBehaviour {
 
     IEnumerator Spawn()
     {
-        if (startDelaySpawn > 0)
+        if (spawnWithoutWaiting)
         {
-            yield return new WaitForSeconds(startDelaySpawn);
-            startDelaySpawn = 0;
+            while (numberToSpawn > 0)
+            {
+                yield return new WaitForSeconds(waitBetweenSpawn);
+                numberToSpawn--;
+                current = ((GameObject)Instantiate(prefabEnnemy, trsm.position, prefabEnnemy.transform.rotation)).GetComponent<Ennemy>();
+                current.gameObject.transform.parent = this.transform;
+                Init();
+            }
         }
         else
         {
             yield return new WaitForSeconds(waitBetweenSpawn);
+            
+            numberToSpawn--;
+            current = ((GameObject)Instantiate(prefabEnnemy, trsm.position, prefabEnnemy.transform.rotation)).GetComponent<Ennemy>();
+            current.gameObject.transform.parent = this.transform;
+            Init();
         }
-        numberToSpawn--;
-        Debug.Log("SPAWNING");
-        current = ((GameObject) Instantiate(prefabEnnemy, trsm.position, prefabEnnemy.transform.rotation)).GetComponent<Ennemy>();
-        current.gameObject.transform.parent = this.transform;
-        Init();
+        
     }
 
     void generateScore()
@@ -91,8 +101,10 @@ public class SpawnerOption : MonoBehaviour {
                 generateLife();
             current.lifePoints = LifePoints;
             current.value = scoreValue;
-
-            current.gameObject.GetComponentInChildren<SpriteRenderer>(). = layerID;
+            current.gameObject.GetComponentInChildren<Shoot>().shootRate = shootRate;
+            current.gameObject.GetComponentInChildren<Move>().shootRate = shootRate;
+            current.gameObject.GetComponentInChildren<Move>().speed = speed;
+            current.gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = layerID;
             alive = true;
             
         }
@@ -108,7 +120,7 @@ public class SpawnerOption : MonoBehaviour {
                 alive = false;
                 Destroy(current.gameObject);
 
-                if (numberToSpawn > 0)
+                if (numberToSpawn > 0 && !spawnWithoutWaiting)
                 {
                     StartCoroutine(Spawn());
                 }

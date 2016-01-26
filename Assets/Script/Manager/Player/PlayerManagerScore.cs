@@ -27,13 +27,20 @@ public partial class PlayerManager : MonoBehaviour
 
     public void applyScoring(int playerID, int amount)
     {
-        //Debug.Log(playerID + " " + amount);
+        playerID--;
         addCombo(playerID, 1);
         addScore(playerID, amount);
     }
 
+    public void applyScoringDecor(int playerID, int amount)
+    {
+        playerID--;
+        addScore(playerID, amount);
+    }
+
+
     // Augmente le score du joueur OU du combo
-    public void addScore(int playerID, int amount)
+    void addScore(int playerID, int amount)
     {
         
         lastTimeScore[playerID] = Time.time;
@@ -53,9 +60,8 @@ public partial class PlayerManager : MonoBehaviour
     }
 
     // Ajoute OU augmente le combo
-    public void addCombo(int playerID, int amount = 1)
+    void addCombo(int playerID, int amount = 1)
     {
-        Debug.Log(playerID + " " + amount);
         lastTimeScore[playerID] = Time.time;
         comboMultiplicateur[playerID] += amount;
         UIManager.Instance.DisplayCombo(playerID, comboValue[playerID], comboMultiplicateur[playerID]);

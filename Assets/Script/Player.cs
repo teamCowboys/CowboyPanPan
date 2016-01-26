@@ -15,14 +15,15 @@ public class Player : MonoBehaviour, IDestroyable{
     public float smokeDuration = 1.0f;
     public TrailRenderer canonSmoke;
 
-
+    Animator anim;
+    bool invincible = false;
 
     void Awake()
     {
         Gun gun = gameObject.AddComponent<Gun>();
         gun.AttachTo(gameObject,typeof(Gun));
         healthPoint = maxHealthPoint;
-
+        anim = GetComponentInChildren<Animator>();
     }
 
     
@@ -53,7 +54,6 @@ public class Player : MonoBehaviour, IDestroyable{
                
                 IDestroyable test = hitInfo.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
                 test.applyDamage(5, playerId);
-                Debug.Log("Attack");
             }
         }
     }
@@ -90,12 +90,19 @@ public class Player : MonoBehaviour, IDestroyable{
 
     public void applyDamage(float damage, int killerID = -1)
     {
-        
-        healthPoint -= damage;
-        if (healthPoint <= 0)
+        if (!invincible)
         {
-            Death();
+            healthPoint -= damage;
+            if (healthPoint <= 0)
+            {
+                Death();
+            }
+            invincible = true;
+            anim.SetTrigger("hit");
+            //Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
+            Invoke("ResetInvincibility", anim.GetCurrentAnimatorStateInfo(0).length);
         }
+        
             
 
     }
@@ -115,5 +122,10 @@ public class Player : MonoBehaviour, IDestroyable{
         {
             healthPoint = maxHealthPoint;
         }
+    }
+
+    void ResetInvincibility()
+    {
+        invincible = false;
     }
 }

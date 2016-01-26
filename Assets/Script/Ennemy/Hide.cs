@@ -12,14 +12,11 @@ public class Hide : IEnemyState
 
     public override void Stop()
     {
-        badboy.position = new Vector3(badboy.position.x, badboy.position.y + Height, -0.1f);
-        Debug.Log("SORT");
+        
     }
 
     public override void Init(GameObject obj)
     {
-        badboy = obj.GetComponent<Transform>();
-        badboy.position = new Vector3(badboy.position.x, badboy.position.y - Height, 1);
-        Debug.Log("SE CACHE");
+        
     }
 }
