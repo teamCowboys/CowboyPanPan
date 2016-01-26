@@ -21,6 +21,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 	float valueShake;
 	float timeShake;
 	Vector3 startPos;
+	GameObject smoke;
 
     void Awake()
     {
@@ -36,7 +37,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 		T3 = T1 * 3;
 
 		child = new GameObject ();
-		child.name = "CrackSprite";
+		child.name = "Crack-"+this.gameObject.name;
 		child.AddComponent<SpriteRenderer> ();
 		child.GetComponent<SpriteRenderer> ().sortingOrder = this.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
 		child.transform.parent = this.gameObject.transform;
@@ -47,13 +48,14 @@ public class Decor : MonoBehaviour,IDestroyable {
 		child.transform.localScale = boxScale;
 
 		GameObject prefab;
-		prefab = Resources.Load ("Crack3") as GameObject;
+		prefab = Resources.Load ("Crack/Crack3") as GameObject;
 		ST1 = prefab.GetComponent<SpriteRenderer> ().sprite;
-		prefab = Resources.Load ("Crack2") as GameObject;
+		prefab = Resources.Load ("Crack/Crack2") as GameObject;
 		ST2 = prefab.GetComponent<SpriteRenderer> ().sprite;
-		prefab = Resources.Load ("Crack1") as GameObject;
+		prefab = Resources.Load ("Crack/Crack1") as GameObject;
 		ST3 = prefab.GetComponent<SpriteRenderer> ().sprite;
 
+		smoke = Resources.Load ("Smoke/WhiteSmoke") as GameObject;
 		phase = "T4";
 
 		startPos = this.gameObject.transform.position;
@@ -81,6 +83,14 @@ public class Decor : MonoBehaviour,IDestroyable {
 		else if (healthPoints <= T2 && phase == "T3")
 		{
 			child.GetComponent<SpriteRenderer>().sprite = ST2;
+			if (!notInvolved)
+			{
+				GameObject smokeChild = Instantiate(smoke) as GameObject;
+				this.gameObject.transform.position = Vector3.zero;
+				smokeChild.transform.parent = this.gameObject.transform;
+				smokeChild.name = "Smoke-" + this.gameObject.name;
+				this.gameObject.transform.position = startPos;
+			}
 			phase = "T2";
 		}
 		else if (healthPoints <= T1 && phase == "T2")
@@ -88,13 +98,15 @@ public class Decor : MonoBehaviour,IDestroyable {
 			child.GetComponent<SpriteRenderer>().sprite = ST1;
 			phase = "T1";
 		}
+
+		if (healthPoints <= 0){Death();}
 	}
 
     public void applyDamage(float damage)
     {
         healthPoints -= damage;
 		timeShake = 0.5f;
-		if (healthPoints <= 0){Death();}
+		if (healthPoints <= 0 && notInvolved){Destroy(this.gameObject);}
     }
 
 	public void shake()
@@ -107,6 +119,12 @@ public class Decor : MonoBehaviour,IDestroyable {
     public void Death()
     {
 		if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
-        Destroy(gameObject);
+
+		this.gameObject.transform.position -= new Vector3 (0,5,0) * Time.deltaTime;
+		notInvolved = true;
+		this.gameObject.GetComponent<SpriteRenderer> ().sortingOrder = -2;
+		child.GetComponent<SpriteRenderer> ().enabled = false;
+		Destroy (this.gameObject.GetComponentInChildren<ParticleSystem> ());
+		if (this.gameObject.transform.position.y < -10){Destroy(this.gameObject);}
     }
 }

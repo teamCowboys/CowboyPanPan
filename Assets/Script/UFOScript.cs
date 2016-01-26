@@ -15,7 +15,7 @@ public class UFOScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		speed = 0.1f;
+		speed = 5;
 		r = g = b = 0.01f;
 		rVal = 0.1f;
 		gVal = 0.05f;
@@ -26,7 +26,7 @@ public class UFOScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		this.gameObject.transform.position += direction;
+		this.gameObject.transform.position += direction * Time.deltaTime;
 
 		if (r > 0.99f || r < 0.01f){rVal *= -1;}
 		if (g > 0.99f || g < 0.01f){gVal *= -1;}
@@ -37,6 +37,6 @@ public class UFOScript : MonoBehaviour {
 		randomCol = new Color(r,g,b);
 		this.gameObject.GetComponent<SpriteRenderer> ().color = randomCol;
 
-		if (this.gameObject.transform.position.x > 10){Destroy(this.gameObject);}
+		if (this.gameObject.transform.position.x > 20){Destroy(this.gameObject);}
 	}
 }

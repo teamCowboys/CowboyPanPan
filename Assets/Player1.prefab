@@ -59,6 +59,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 483788}
+  - 114: {fileID: 11449226}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -235,6 +236,17 @@ MonoBehaviour:
   jumpForce: 100
   gravity: 5
   ground: 0
+--- !u!114 &11449226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb4ea64fc5ad1d46bae4145cce9be87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11459534
 MonoBehaviour:
   m_ObjectHideFlags: 1
