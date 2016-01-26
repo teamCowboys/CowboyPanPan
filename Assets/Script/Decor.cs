@@ -5,8 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider))]
 public class Decor : MonoBehaviour,IDestroyable {
 
+    public int scoreValue = 100;
 
-	public float maxHealthPoints;
+    public float maxHealthPoints;
     public float healthPoints;
 	public GameObject loot;
 	public bool notInvolved;
@@ -22,7 +23,6 @@ public class Decor : MonoBehaviour,IDestroyable {
 	float timeShake;
 	Vector3 startPos;
 	GameObject smoke;
-	bool isFalling;
 
     void Awake()
     {
@@ -36,8 +36,6 @@ public class Decor : MonoBehaviour,IDestroyable {
 		T1 = maxHealthPoints / 4;
 		T2 = T1 * 2;
 		T3 = T1 * 3;
-
-		isFalling = false;
 
 		child = new GameObject ();
 		child.name = "Crack-"+this.gameObject.name;
@@ -105,18 +103,23 @@ public class Decor : MonoBehaviour,IDestroyable {
 		if (healthPoints <= 0){Death();}
 	}
 
-    public void applyDamage(float damage)
+    public void applyDamage(float damage, int killerID=-1)
     {
-		if (!isFalling) 
-		{
-			healthPoints -= damage;
-			timeShake = 0.5f;
-			if (healthPoints <= 0 && notInvolved)
-			{
-				if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
-				Destroy(this.gameObject);
-			}
-		}
+        healthPoints -= damage;
+        timeShake = 0.5f;
+        if (healthPoints <= 0 && notInvolved)
+        {
+            if (loot) { Instantiate(loot, this.gameObject.transform.position, Quaternion.identity); }
+            Destroy(this.gameObject);
+        }
+        if (healthPoints <= 0)
+        {
+            if (killerID != -1)
+            {
+                PlayerManager.Instance.applyScoringDecor(killerID, scoreValue);
+            }
+            Death();
+        }
     }
 
 	public void shake()
@@ -128,29 +131,14 @@ public class Decor : MonoBehaviour,IDestroyable {
 
     public void Death()
     {
-
-		if (!isFalling)
-		{
-			GetComponent<Rigidbody>().isKinematic = true;
-			this.gameObject.GetComponent<SpriteRenderer> ().sortingOrder = -2;
-			child.GetComponent<SpriteRenderer> ().enabled = false;
-			Destroy (this.gameObject.GetComponentInChildren<ParticleSystem> ());
-			Transform[] AllChild = this.gameObject.GetComponentsInChildren<Transform>();
-			foreach(Transform ts in AllChild)
-			{
-				if (ts.GetComponent<SpriteRenderer>() && ts.name != this.gameObject.name){ts.GetComponent<SpriteRenderer>().enabled = false;}
-			}
-			notInvolved = true;
-			isFalling = true;
-		}
+        GetComponent<Rigidbody>().isKinematic = true;
+        if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
 
 		this.gameObject.transform.position -= new Vector3 (0,5,0) * Time.deltaTime;
-
-		if (this.gameObject.transform.position.y < -10)
-		{
-			if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
-			Destroy(this.gameObject);
-		}
-
+		notInvolved = true;
+		this.gameObject.GetComponent<SpriteRenderer> ().sortingOrder = -2;
+		child.GetComponent<SpriteRenderer> ().enabled = false;
+		Destroy (this.gameObject.GetComponentInChildren<ParticleSystem> ());
+		if (this.gameObject.transform.position.y < -10){Destroy(this.gameObject);}
     }
 }

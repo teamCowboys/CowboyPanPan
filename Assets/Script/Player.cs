@@ -15,14 +15,15 @@ public class Player : MonoBehaviour, IDestroyable{
     public float smokeDuration = 1.0f;
     public TrailRenderer canonSmoke;
 
-
+    Animator anim;
+    bool invincible = false;
 
     void Awake()
     {
         Gun gun = gameObject.AddComponent<Gun>();
         gun.AttachTo(gameObject,typeof(Gun));
         healthPoint = maxHealthPoint;
-
+        anim = GetComponentInChildren<Animator>();
     }
 
     
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour, IDestroyable{
             }
             if (Input.GetButton("Fire" + playerId) && Time.time > lastShot+currentWeapon.fireRate)
             {
-                currentWeapon.Shoot();
+                currentWeapon.Shoot(playerId);
                 lastShot = Time.time;
             }
             if (Input.GetButtonUp("Fire" + playerId))
@@ -68,9 +69,9 @@ public class Player : MonoBehaviour, IDestroyable{
         }
         else
         {
-            if(Input.GetButtonDown("Fire"+playerId) && Time.time > lastShot + currentWeapon.fireRate)
+            if(Input.GetButtonDown("Fire"+playerId))
             {
-                currentWeapon.Shoot();
+                currentWeapon.Shoot(playerId);
                 lastShot = Time.time;
             }
         }
@@ -81,12 +82,14 @@ public class Player : MonoBehaviour, IDestroyable{
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo = new RaycastHit();
-            Debug.Log("mouse position " + Input.mousePosition+" Cursor position "+ GetComponent<PlayerAim>().getCursorPosition());
+            //Debug.Log("mouse position " + Input.mousePosition+" Cursor position "+ GetComponent<PlayerAim>().getCursorPosition());
             //if (Physics.Raycast(Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition()), out hitInfo))
+            
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
             {
+               
                 IDestroyable test = hitInfo.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
-                test.applyDamage(5);
+                test.applyDamage(5, playerId);
             }
         }
     }
@@ -128,14 +131,44 @@ public class Player : MonoBehaviour, IDestroyable{
 
     }
 
-    public void applyDamage(float damage)
+    public void applyDamage(float damage, int killerID = -1)
     {
-        healthPoint -= damage;
+        if (!invincible)
+        {
+            healthPoint -= damage;
+            if (healthPoint <= 0)
+            {
+                Death();
+            }
+            invincible = true;
+            anim.SetTrigger("hit");
+            //Debug.Log(anim.GetCurrentAnimatorStateInfo(0).length);
+            Invoke("ResetInvincibility", anim.GetCurrentAnimatorStateInfo(0).length);
+        }
+        
+            
 
     }
 
     public void Death()
     {
         // do nothing yet
+        // use Credit & respawn
+
+        bool isCreditLeft = PlayerManager.Instance.UseCredit(playerId);
+        if (!isCreditLeft)
+        {
+            // Can't Respawn
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            healthPoint = maxHealthPoint;
+        }
+    }
+
+    void ResetInvincibility()
+    {
+        invincible = false;
     }
 }
