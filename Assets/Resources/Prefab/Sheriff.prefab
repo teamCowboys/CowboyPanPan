@@ -12,6 +12,7 @@ GameObject:
   - 54: {fileID: 5424878}
   - 65: {fileID: 6503830}
   - 114: {fileID: 11491982}
+  - 65: {fileID: 6515576}
   m_Layer: 0
   m_Name: Sheriff
   m_TagString: Untagged
@@ -56,8 +57,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .899999976, y: 1.10000002, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: .899999857, y: .973861694, z: 1}
+  m_Center: {x: 0, y: -.0630688295, z: 0}
+--- !u!65 &6515576
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150490}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .575619459, y: .150991499, z: .200000003}
+  m_Center: {x: .00917579047, y: .494503856, z: 0}
 --- !u!114 &11491982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,6 +85,7 @@ MonoBehaviour:
   maxHealthPoints: 20
   healthPoints: 0
   loot: {fileID: 0}
+  notInvolved: 0
 --- !u!212 &21226906
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -90,7 +104,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

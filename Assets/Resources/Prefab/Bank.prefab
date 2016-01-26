@@ -12,6 +12,7 @@ GameObject:
   - 54: {fileID: 5471212}
   - 65: {fileID: 6564040}
   - 114: {fileID: 11494360}
+  - 65: {fileID: 6534420}
   m_Layer: 0
   m_Name: Bank
   m_TagString: Untagged
@@ -46,6 +47,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!65 &6534420
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .719389141, y: .17354919, z: .200000003}
+  m_Center: {x: -.00274979696, y: .766088963, z: 0}
 --- !u!65 &6564040
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -56,8 +69,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.70000005, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.52361393, z: 1}
+  m_Center: {x: 0, y: -.0881929174, z: 0}
 --- !u!114 &11494360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,6 +85,7 @@ MonoBehaviour:
   maxHealthPoints: 40
   healthPoints: 0
   loot: {fileID: 0}
+  notInvolved: 0
 --- !u!212 &21250832
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -90,7 +104,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

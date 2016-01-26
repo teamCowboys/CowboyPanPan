@@ -118,7 +118,8 @@ public class Decor : MonoBehaviour,IDestroyable {
 
     public void Death()
     {
-		if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
+        GetComponent<Rigidbody>().isKinematic = true;
+        if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
 
 		this.gameObject.transform.position -= new Vector3 (0,5,0) * Time.deltaTime;
 		notInvolved = true;

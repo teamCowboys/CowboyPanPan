@@ -12,6 +12,7 @@ GameObject:
   - 54: {fileID: 5471104}
   - 65: {fileID: 6592588}
   - 114: {fileID: 11442362}
+  - 65: {fileID: 6502268}
   m_Layer: 0
   m_Name: Salon
   m_TagString: Untagged
@@ -46,6 +47,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!65 &6502268
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .586212039, y: .168821037, z: .200000003}
+  m_Center: {x: .00102721516, y: .65558964, z: 0}
 --- !u!65 &6592588
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -56,8 +69,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .800000012, y: 1.5, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: .800000012, y: 1.32917798, z: 1}
+  m_Center: {x: 0, y: -.0854110271, z: 0}
 --- !u!114 &11442362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,7 +104,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
