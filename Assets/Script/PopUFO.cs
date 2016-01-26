@@ -6,7 +6,6 @@ public class PopUFO : MonoBehaviour {
 	public float delay;
 	public float rand;
 	public float timerPop;
-	float startTimer;
 	GameObject UFO;
 	bool hasPop;
 	// Use this for initialization

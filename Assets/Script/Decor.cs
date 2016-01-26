@@ -83,17 +83,14 @@ public class Decor : MonoBehaviour,IDestroyable {
 		else if (healthPoints <= T2 && phase == "T3")
 		{
 			child.GetComponent<SpriteRenderer>().sprite = ST2;
-			Vector3 pos = startPos;
-			pos.x = startPos.x;
-			pos.y = startPos.y/2;
-			if (pos.y < 0){pos.y *= -1;}
-			pos.z = startPos.z;
-			GameObject smokeChild = Instantiate(smoke) as GameObject;
-			this.gameObject.transform.position = Vector3.zero;
-			//smokeChild.transform.position = Vector3.zero;
-			smokeChild.transform.parent = this.gameObject.transform;
-			smokeChild.name = "Smoke-" + this.gameObject.name;
-			this.gameObject.transform.position = startPos;
+			if (!notInvolved)
+			{
+				GameObject smokeChild = Instantiate(smoke) as GameObject;
+				this.gameObject.transform.position = Vector3.zero;
+				smokeChild.transform.parent = this.gameObject.transform;
+				smokeChild.name = "Smoke-" + this.gameObject.name;
+				this.gameObject.transform.position = startPos;
+			}
 			phase = "T2";
 		}
 		else if (healthPoints <= T1 && phase == "T2")
@@ -101,13 +98,15 @@ public class Decor : MonoBehaviour,IDestroyable {
 			child.GetComponent<SpriteRenderer>().sprite = ST1;
 			phase = "T1";
 		}
+
+		if (healthPoints <= 0){Death();}
 	}
 
     public void applyDamage(float damage)
     {
         healthPoints -= damage;
 		timeShake = 0.5f;
-		if (healthPoints <= 0){Death();}
+		if (healthPoints <= 0 && notInvolved){Destroy(this.gameObject);}
     }
 
 	public void shake()
@@ -120,6 +119,12 @@ public class Decor : MonoBehaviour,IDestroyable {
     public void Death()
     {
 		if (loot){Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);}
-        Destroy(gameObject);
+
+		this.gameObject.transform.position -= new Vector3 (0,5,0) * Time.deltaTime;
+		notInvolved = true;
+		this.gameObject.GetComponent<SpriteRenderer> ().sortingOrder = -2;
+		child.GetComponent<SpriteRenderer> ().enabled = false;
+		Destroy (this.gameObject.GetComponentInChildren<ParticleSystem> ());
+		if (this.gameObject.transform.position.y < -10){Destroy(this.gameObject);}
     }
 }
