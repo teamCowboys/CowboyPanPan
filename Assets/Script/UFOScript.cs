@@ -37,6 +37,6 @@ public class UFOScript : MonoBehaviour {
 		randomCol = new Color(r,g,b);
 		this.gameObject.GetComponent<SpriteRenderer> ().color = randomCol;
 
-		if (this.gameObject.transform.position.x > 10){Destroy(this.gameObject);}
+		if (this.gameObject.transform.position.x > 20){Destroy(this.gameObject);}
 	}
 }
