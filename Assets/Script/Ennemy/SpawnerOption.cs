@@ -3,23 +3,34 @@ using System.Collections;
 
 public class SpawnerOption : MonoBehaviour {
     //public float startDelaySpawn = 0.0f;
+    [Header("Spawner Option")]
+    public GameObject prefabEnnemy;
     public float waitBetweenSpawn = 1f;
-    public int layerID = 1;
     public int numberToSpawn = 10;
-    public int waveToSpawn = 3;
+    [Space]
+    public bool spawnWithoutWaiting;
+    public float waitBetweenWave = 1f;
+    public int numberByWave = 3;
+
+    [Header("Loot")]
+    public int lootLuck;
+    public GameObject[] lootList;
+
+    [Header("Ennemy Option")]
+    
+    public int layerID = 1;
     public bool canMove;
     public bool moveRight;
     public bool canHide;
-    public bool spawnWithoutWaiting;
     public int LifePoints=0 ;
     public int scoreValue = 0;
     public float shootRate = 2;
     public float speed = 1;
-    public GameObject prefabEnnemy;
+    
     Ennemy current;
-
     Transform trsm;
     bool randomScore, randomLife, alive;
+
     void Start () {
         trsm = this.gameObject.GetComponent<Transform>();
         if (LifePoints == 0)
@@ -55,8 +66,8 @@ public class SpawnerOption : MonoBehaviour {
     {
         if (spawnWithoutWaiting)
         {
-            int wave = waveToSpawn;
-            while (wave > 0&&numberToSpawn>0)
+            int wave = numberByWave;
+            while (wave > 0 && numberToSpawn>0)
             {
                 wave--;
                 yield return new WaitForSeconds(waitBetweenSpawn);
@@ -65,6 +76,7 @@ public class SpawnerOption : MonoBehaviour {
                 current.gameObject.transform.parent = this.transform;
                 Init();
             }
+            StartCoroutine(nextWave());
         }
         else
         {
@@ -78,6 +90,12 @@ public class SpawnerOption : MonoBehaviour {
         
     }
 
+    IEnumerator nextWave()
+    {
+        yield return new WaitForSeconds(waitBetweenWave);
+        StartCoroutine(Spawn());
+    }
+
     void generateScore()
     {
         scoreValue = Mathf.FloorToInt(Random.Range(10, 50) * 10);
@@ -86,6 +104,18 @@ public class SpawnerOption : MonoBehaviour {
     void generateLife()
     {
         LifePoints = Mathf.FloorToInt(Random.Range(1, 10));
+    }
+
+    void generateLoot()
+    {
+        int rand = Mathf.FloorToInt(Random.Range(0,100));
+        if (lootLuck > rand)
+        {
+            rand = Mathf.FloorToInt(Random.Range(0, lootList.Length-1));
+            current.loot = lootList[rand];
+        }
+
+        //current.loot = ;
     }
 
     void Init()
@@ -108,6 +138,7 @@ public class SpawnerOption : MonoBehaviour {
             current.gameObject.GetComponentInChildren<Move>().shootRate = shootRate;
             current.gameObject.GetComponentInChildren<Move>().speed = speed;
             current.gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = layerID;
+            generateLoot();
             alive = true;
             
         }

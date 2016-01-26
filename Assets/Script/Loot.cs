@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Loot : MonoBehaviour {
 
+
+
     public float speed;
     public float jumpForce;
     public float gravity;
