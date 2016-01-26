@@ -47,10 +47,8 @@ public class Player : MonoBehaviour, IDestroyable{
             ChangeGun(EnumerationGun.GunType.SNIPER);
         if (currentWeapon.isAuto)
         {
-<<<<<<< HEAD
             currentWeapon.Shoot(playerId);
             lastShot = Time.time;
-=======
             if (Input.GetButtonDown("Fire" + playerId) && Time.time > lastShot + currentWeapon.fireRate)
             {
                 AudioSource audio = GetComponent<AudioSource>();
@@ -60,7 +58,7 @@ public class Player : MonoBehaviour, IDestroyable{
             }
             if (Input.GetButton("Fire" + playerId) && Time.time > lastShot+currentWeapon.fireRate)
             {
-                currentWeapon.Shoot();
+                currentWeapon.Shoot(playerId);
                 lastShot = Time.time;
             }
             if (Input.GetButtonUp("Fire" + playerId))
@@ -73,10 +71,9 @@ public class Player : MonoBehaviour, IDestroyable{
         {
             if(Input.GetButtonDown("Fire"+playerId) && Time.time > lastShot + currentWeapon.fireRate)
             {
-                currentWeapon.Shoot();
+                currentWeapon.Shoot(playerId);
                 lastShot = Time.time;
             }
->>>>>>> refs/remotes/origin/Benjamin
         }
         if (Time.time > lastShot + smokeDuration)
             canonSmoke.enabled  = false;

@@ -48,13 +48,10 @@ public abstract class AbstractWeapon : AbstractPickable {
             IDestroyable component = hit.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
             if (component!= null)
             {
-<<<<<<< HEAD
                 component.applyDamage(damage, ShooterID);
-=======
                 GameObject inst = Instantiate(bulletHole, hit.point, bulletHole.transform.rotation) as GameObject;
                 inst.transform.parent = hit.collider.transform;
-                component.applyDamage(damage);
->>>>>>> refs/remotes/origin/Benjamin
+                //component.applyDamage(damage);
             }
         }
 
