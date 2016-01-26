@@ -13,11 +13,16 @@ public class LaserGun : AbstractWeapon {
         damage = 50.0f;
         fireRate = 0.1f;
         reloadingTime = 1.0f;
+        cursor = Resources.Load<Sprite>("Graph/cursor/Cursor6");
         base.Init();
     }
 
     public override void GiveTo(Player player)
     {
+        Destroy(player.currentWeapon);
+        AbstractWeapon nextGun = player.gameObject.AddComponent<LaserGun>();
         AttachTo(player.gameObject,typeof(LaserGun));
+        if (gameObject.tag != "Player")
+            Destroy(gameObject);
     }
 }

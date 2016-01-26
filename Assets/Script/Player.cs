@@ -33,10 +33,44 @@ public class Player : MonoBehaviour, IDestroyable{
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetButtonDown("Fire"+playerId))
+
+        if (Input.GetKeyDown(KeyCode.A))
+            ChangeGun(EnumerationGun.GunType.GUN);
+        if (Input.GetKeyDown(KeyCode.Z))
+            ChangeGun(EnumerationGun.GunType.LASERGUN);
+        if (Input.GetKeyDown(KeyCode.E))
+            ChangeGun(EnumerationGun.GunType.MINIGUN);
+        if (Input.GetKeyDown(KeyCode.R))
+            ChangeGun(EnumerationGun.GunType.SHOTGUN);
+        if (Input.GetKeyDown(KeyCode.T))
+            ChangeGun(EnumerationGun.GunType.SNIPER);
+        if (currentWeapon.isAuto)
         {
-            currentWeapon.Shoot();
-            lastShot = Time.time;
+            if (Input.GetButtonDown("Fire" + playerId) && Time.time > lastShot + currentWeapon.fireRate)
+            {
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.clip = currentWeapon.sound;
+                audio.loop = true;
+                audio.Play();
+            }
+            if (Input.GetButton("Fire" + playerId) && Time.time > lastShot+currentWeapon.fireRate)
+            {
+                currentWeapon.Shoot();
+                lastShot = Time.time;
+            }
+            if (Input.GetButtonUp("Fire" + playerId))
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+
+        }
+        else
+        {
+            if(Input.GetButtonDown("Fire"+playerId) && Time.time > lastShot + currentWeapon.fireRate)
+            {
+                currentWeapon.Shoot();
+                lastShot = Time.time;
+            }
         }
         if (Time.time > lastShot + smokeDuration)
             canonSmoke.enabled  = false;
@@ -57,6 +91,9 @@ public class Player : MonoBehaviour, IDestroyable{
 
     public void ChangeGun(EnumerationGun.GunType typeOfGun)
     {
+        GetComponent<AudioSource>().Stop();
+        if (currentWeapon.type == typeOfGun)
+            return;
         System.Type type = null;
         switch(typeOfGun)
         {
@@ -66,12 +103,15 @@ public class Player : MonoBehaviour, IDestroyable{
             case EnumerationGun.GunType.LASERGUN:
                 type = typeof(LaserGun);
                 break;
-            /*case EnumerationGun.GunType.SHOTGUN:
-                weapon = new shotGun();
+            case EnumerationGun.GunType.MINIGUN:
+                type = typeof(MiniGun);
+                break;
+            case EnumerationGun.GunType.SHOTGUN:
+                type = typeof(Shotgun);
                 break;
             case EnumerationGun.GunType.SNIPER:
-                weapon = new Sniper();
-                break;*/
+                type = typeof(Sniper);
+                break;
         }
         ChangeGun(type);
 
@@ -80,6 +120,7 @@ public class Player : MonoBehaviour, IDestroyable{
 
     public void ChangeGun(System.Type type)
     {
+        Destroy(currentWeapon);
         AbstractWeapon nextGun = (AbstractWeapon)gameObject.AddComponent(type);
         nextGun.AttachTo(gameObject,type);
 

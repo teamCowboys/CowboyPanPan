@@ -12,7 +12,10 @@ public abstract class AbstractWeapon : AbstractPickable {
     public float fireRate;
     public float reloadingTime;
     private bool reloading = false;
+    public bool isAuto = false;
     public Sprite cursor;
+    public GameObject bulletHole = Resources.Load("Graph/Weapons/bulletholeGameobject") as GameObject;
+    public AudioClip sound = Resources.Load<AudioClip>("Sound/minigun");
 
 
 
@@ -45,6 +48,8 @@ public abstract class AbstractWeapon : AbstractPickable {
             IDestroyable component = hit.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
             if (component!= null)
             {
+                GameObject inst = Instantiate(bulletHole, hit.point, bulletHole.transform.rotation) as GameObject;
+                inst.transform.parent = hit.collider.transform;
                 component.applyDamage(damage);
             }
         }
@@ -69,14 +74,14 @@ public abstract class AbstractWeapon : AbstractPickable {
     public void AttachTo(GameObject obj,System.Type type)
     {
         Player player = obj.GetComponent<Player>();
-        if(player.currentWeapon)
-            Destroy(player.currentWeapon);
-        if (!obj.GetComponent(type))
-            player.currentWeapon = (AbstractWeapon)obj.AddComponent(type);
-        else
-            player.currentWeapon = (AbstractWeapon)obj.GetComponent(type);
+        player.currentWeapon = (AbstractWeapon)obj.GetComponent(type);
         player.currentWeapon.SetPicked(true);
         obj.GetComponent<PlayerAim>().cursor.sprite = cursor;
+        if(player.playerId == 1)
+            obj.GetComponent<PlayerAim>().cursor.color = Color.red;
+        else
+            obj.GetComponent<PlayerAim>().cursor.color = Color.blue;
+
     }
 
 
