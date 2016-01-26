@@ -10,6 +10,7 @@ public class Decor : MonoBehaviour,IDestroyable {
     public float maxHealthPoints;
     public float healthPoints;
 	public GameObject loot;
+	public bool notInvolved;
 	float T1;
 	float T2;
 	float T3;
@@ -66,8 +67,12 @@ public class Decor : MonoBehaviour,IDestroyable {
 		valueShake = Mathf.Sin (Time.time * 50.0f);
 		timeShake -= Time.deltaTime;
 
-		if (timeShake > 0){shake();}
-		else{this.gameObject.transform.position = startPos;}
+		if (!notInvolved) 
+		{
+			if (timeShake > 0) {shake ();} 
+			else{this.gameObject.transform.position = startPos;}
+		}
+
 
 		if (healthPoints <= T3 && phase == "T4")
 		{
@@ -101,9 +106,9 @@ public class Decor : MonoBehaviour,IDestroyable {
 
 	public void shake()
 	{
-		Vector3 test = startPos;
-		test.x += valueShake/50;
-		this.gameObject.transform.localPosition = test;
+		Vector3 shaking = startPos;
+		shaking.x += valueShake/50;
+		this.gameObject.transform.localPosition = shaking;
 	}
 
     public void Death()
