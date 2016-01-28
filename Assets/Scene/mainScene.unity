@@ -322,6 +322,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 459204, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: m_LocalPosition.x
       value: .400000006
@@ -362,6 +366,26 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
   m_IsPrefabParent: 0
@@ -372,6 +396,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 490136, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.17999983
@@ -412,6 +440,26 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
   m_IsPrefabParent: 0
@@ -422,6 +470,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 451434, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.3900001
@@ -462,6 +514,26 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
   m_IsPrefabParent: 0
@@ -514,6 +586,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 485896, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5.46999979
@@ -558,6 +634,26 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
   m_IsPrefabParent: 0
@@ -804,6 +900,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 411436, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
       propertyPath: m_LocalPosition.x
       value: -10.1499996
@@ -872,6 +972,34 @@ Prefab:
       propertyPath: shootRate
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: waitBetweenSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: waitBetweenWave
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
   m_IsPrefabParent: 0
@@ -966,6 +1094,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 411436, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
       propertyPath: m_LocalPosition.x
       value: 4.11000013
@@ -1026,6 +1158,26 @@ Prefab:
       propertyPath: shootRate
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
   m_IsPrefabParent: 0
@@ -1036,6 +1188,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 458794, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.01999998
@@ -1076,6 +1232,26 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b50849916da862f40a8f89a94763d697, type: 2}
   m_IsPrefabParent: 0
@@ -1086,6 +1262,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 411436, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
       propertyPath: m_LocalPosition.x
       value: -4.28000021
@@ -1142,6 +1322,26 @@ Prefab:
       propertyPath: shootRate
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
   m_IsPrefabParent: 0
@@ -1152,6 +1352,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 411436, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
       propertyPath: m_LocalPosition.x
       value: 10.29
@@ -1216,6 +1420,26 @@ Prefab:
       propertyPath: shootRate
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootLuck
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[0]
+      value: 
+      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[1]
+      value: 
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[2]
+      value: 
+      objectReference: {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
+    - target: {fileID: 11445900, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
+      propertyPath: lootList.Array.data[3]
+      value: 
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bf1f5b0b0b8a1e40b847fa518a706fe, type: 2}
   m_IsPrefabParent: 0

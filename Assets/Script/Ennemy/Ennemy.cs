@@ -11,6 +11,7 @@ enum S
 
 public class Ennemy : IEnnemy {
     SpriteRenderer renderer;
+    public GameObject loot;
     public int damage = 1;
     public int value = 100;
     public IEnemyState currentState;
@@ -104,6 +105,7 @@ public class Ennemy : IEnnemy {
     {
         if (lifePoints <= dmg)
         {
+            Instantiate(loot, this.transform.position, loot.transform.rotation);
             lifePoints = 0;
 
             PlayerManager.Instance.applyScoring(killerID, value);
