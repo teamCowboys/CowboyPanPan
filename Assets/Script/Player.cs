@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, IDestroyable{
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyDown(KeyCode.M)){currentWeapon.Shoot();}
+		//if (Input.GetKeyDown(KeyCode.M)){currentWeapon.Shoot();}
 
         if (Input.GetKeyDown(KeyCode.A))
             ChangeGun(EnumerationGun.GunType.GUN);

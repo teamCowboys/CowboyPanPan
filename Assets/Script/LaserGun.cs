@@ -19,6 +19,8 @@ public class LaserGun : AbstractWeapon {
 
     public override void GiveTo(Player player)
     {
+        if (player.currentWeapon.type == EnumerationGun.GunType.LASERGUN)
+            return;
         Destroy(player.currentWeapon);
         AbstractWeapon nextGun = player.gameObject.AddComponent<LaserGun>();
         AttachTo(player.gameObject,typeof(LaserGun));
