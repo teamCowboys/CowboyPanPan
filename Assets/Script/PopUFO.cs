@@ -3,13 +3,15 @@ using System.Collections;
 
 public class PopUFO : MonoBehaviour {
 
-	public float delay;
-	public float rand;
-	public float timerPop;
+	float delay;
+	float rand;
+	float timerPop;
 	GameObject UFO;
 	bool hasPop;
 	// Use this for initialization
 	void Start () {
+		delay = 50;
+		rand = 50;
 		hasPop = false;
 		delay += Random.Range (0, rand);
 		UFO = Resources.Load ("Prefab/UFO") as GameObject;

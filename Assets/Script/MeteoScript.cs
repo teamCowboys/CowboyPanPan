@@ -33,10 +33,10 @@ public class MeteoScript : MonoBehaviour {
 
 		if (timerCloud >= delay)
 		{
-			int rnd = Random.Range(0,11);
-			if (rnd < 5){cloud = Instantiate(cloud1);}
-			else if (rnd > 5 && rnd < 10){cloud = Instantiate(cloud2);}
-			else{cloud = Instantiate(cloudT);}
+			int rnd = Random.Range(0,41);
+			if (rnd == 0){cloud = Instantiate(cloudT);}
+			else if (rnd != 0 && rnd < 20){cloud = Instantiate(cloud1);}
+			else{cloud = Instantiate(cloud2);}
 			cloud.transform.parent = papaCloud.transform;
 			cloud.name = "Cloud-" + nbCloud;
 			nbCloud++;
