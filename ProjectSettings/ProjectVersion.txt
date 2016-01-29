@@ -1,10 +1,2 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 m_EditorVersion: 5.2.3f1
-=======
-m_EditorVersion: 5.2.1f1
->>>>>>> Benjamin
-=======
-m_EditorVersion: 5.2.3f1
->>>>>>> refs/remotes/origin/Benjamin
 m_StandardAssetsVersion: 0

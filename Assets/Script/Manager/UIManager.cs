@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour {
         if (s_Instance == null)
             s_Instance = this;
         DontDestroyOnLoad(this);
+        InitScore();
     }
     #endregion
 
@@ -31,12 +32,7 @@ public class UIManager : MonoBehaviour {
     int[] corotineCount = { 0, 0 };
     bool[] isComboMultSliding = { false, false };
     #endregion
-
-
-	void Start () {
-        InitScore();
-	}
-
+    
     void InitScore()
     {
         if (PlayerUI[0] == null) PlayerUI[0] = GameObject.Find("Player1UI");

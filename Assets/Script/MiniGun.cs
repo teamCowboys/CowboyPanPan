@@ -18,6 +18,8 @@ public class MiniGun : AbstractWeapon {
 
     public override void GiveTo(Player player)
     {
+        if (player.currentWeapon.type == EnumerationGun.GunType.MINIGUN)
+            return;
         Destroy(player.currentWeapon);
         AbstractWeapon nextGun = player.gameObject.AddComponent<MiniGun>();
         AttachTo(player.gameObject, typeof(MiniGun));

@@ -18,6 +18,8 @@ public class Sniper : AbstractWeapon
 
     public override void GiveTo(Player player)
     {
+        if (player.currentWeapon.type == EnumerationGun.GunType.SNIPER)
+            return;
         Destroy(player.currentWeapon);
         AbstractWeapon nextGun = player.gameObject.AddComponent<Sniper>();
         AttachTo(player.gameObject, typeof(Sniper));
