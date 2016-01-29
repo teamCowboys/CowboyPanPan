@@ -105,6 +105,7 @@ public class Ennemy : IEnnemy {
     {
         if (lifePoints <= dmg)
         {
+            if(loot != null)
             Instantiate(loot, this.transform.position, loot.transform.rotation);
             lifePoints = 0;
 
