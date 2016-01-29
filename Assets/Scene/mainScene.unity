@@ -136,7 +136,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 459204, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: m_LocalPosition.x
@@ -180,12 +180,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootLuck
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -433,7 +433,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 458794, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: m_LocalPosition.x
@@ -482,7 +482,7 @@ Prefab:
     - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -511,7 +511,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 459204, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: m_LocalPosition.x
@@ -555,12 +555,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootLuck
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11474878, guid: c35a16fe4a2a10948b93fa844d6bf6ba, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -622,12 +622,11 @@ MonoBehaviour:
   spawnWithoutWaiting: 0
   waitBetweenWave: 1
   numberByWave: 3
-  lootLuck: 10
+  lootLuck: 25
   lootList:
-  - {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   - {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
   - {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
-  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   layerID: 1
   canMove: 0
   moveRight: 0
@@ -670,12 +669,11 @@ MonoBehaviour:
   spawnWithoutWaiting: 0
   waitBetweenWave: 1
   numberByWave: 3
-  lootLuck: 10
+  lootLuck: 25
   lootList:
-  - {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   - {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
   - {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
-  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   layerID: 1
   canMove: 0
   moveRight: 0
@@ -705,7 +703,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 490136, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -754,7 +752,7 @@ Prefab:
     - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -779,7 +777,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 451434, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
       propertyPath: m_LocalPosition.x
@@ -823,12 +821,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
       propertyPath: lootLuck
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11410972, guid: 99f9f8877aa54244e9cbce2e18eb96c8, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -895,7 +893,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 485896, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: m_LocalPosition.x
@@ -948,7 +946,7 @@ Prefab:
     - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -1110,7 +1108,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 485896, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1163,7 +1161,7 @@ Prefab:
     - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11455930, guid: abb0109226bb36a42bf6549d7ba30a28, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -1328,12 +1326,11 @@ MonoBehaviour:
   spawnWithoutWaiting: 1
   waitBetweenWave: 3
   numberByWave: 3
-  lootLuck: 10
+  lootLuck: 25
   lootList:
-  - {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   - {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
   - {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
-  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   layerID: 1
   canMove: 1
   moveRight: 1
@@ -1384,7 +1381,7 @@ Prefab:
     - target: {fileID: 11476014, guid: 489a4ac6d2cfa4e4985c4c4e4a72124a, type: 2}
       propertyPath: loot
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 489a4ac6d2cfa4e4985c4c4e4a72124a, type: 2}
   m_IsPrefabParent: 0
@@ -1397,7 +1394,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 490136, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1446,7 +1443,7 @@ Prefab:
     - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11417584, guid: f2e7828bd368934489943899c83ebf1f, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -1475,7 +1472,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: lootList.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 458794, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1524,7 +1521,7 @@ Prefab:
     - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: lootList.Array.data[0]
       value: 
-      objectReference: {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+      objectReference: {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
     - target: {fileID: 11493808, guid: b50849916da862f40a8f89a94763d697, type: 2}
       propertyPath: lootList.Array.data[1]
       value: 
@@ -1619,9 +1616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2c68e7501c3bf479d9a72d824a7e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 10
-  rand: 10
-  timerPop: 0
 --- !u!4 &2080758404
 Transform:
   m_ObjectHideFlags: 0
@@ -1692,12 +1686,11 @@ MonoBehaviour:
   spawnWithoutWaiting: 1
   waitBetweenWave: 3
   numberByWave: 3
-  lootLuck: 10
+  lootLuck: 25
   lootList:
-  - {fileID: 121010, guid: 2e615910cf480af4daa79d45a7f8cadc, type: 2}
+  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   - {fileID: 151488, guid: bf091cdcbcad7f54e95ecdbc5e3eba8c, type: 2}
   - {fileID: 156258, guid: 4f954dc63b769b84b9fe9ec24502c977, type: 2}
-  - {fileID: 179402, guid: 7ffa89b9acfe3fd439004e6832b003c4, type: 2}
   layerID: 1
   canMove: 1
   moveRight: 0
