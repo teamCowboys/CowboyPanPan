@@ -1442,9 +1442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2c68e7501c3bf479d9a72d824a7e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 10
-  rand: 10
-  timerPop: 0
 --- !u!4 &2080758404
 Transform:
   m_ObjectHideFlags: 0
