@@ -82,7 +82,7 @@ MonoBehaviour:
   isAuto: 0
   cursor: {fileID: 0}
   bulletHole: {fileID: 127696, guid: d150db49dc4b6df4f9b3a3f9c7d2dbd2, type: 2}
-  sound: {fileID: 8300000, guid: 14bff13120b5d2242a83fdf62ee9c9cd, type: 3}
+  sound: {fileID: 8300000, guid: 6431c06acbb03cc459b15d610ca974b9, type: 3}
 --- !u!114 &11474004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,6 +141,10 @@ Prefab:
       propertyPath: gravity
       value: .200000003
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6431c06acbb03cc459b15d610ca974b9, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121010}
