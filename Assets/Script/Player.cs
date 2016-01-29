@@ -35,8 +35,7 @@ public class Player : MonoBehaviour, IDestroyable{
 	// Update is called once per frame
 	void Update () {
 
-		//if (Input.GetKeyDown(KeyCode.M)){currentWeapon.Shoot();}
-
+        //if (Input.GetKeyDown(KeyCode.M)){currentWeapon.Shoot();}
         if (Input.GetKeyDown(KeyCode.A))
             ChangeGun(EnumerationGun.GunType.GUN);
         if (Input.GetKeyDown(KeyCode.Z))
@@ -69,7 +68,7 @@ public class Player : MonoBehaviour, IDestroyable{
         }
         else
         {
-            if(Input.GetButtonDown("Fire"+playerId))
+            if (Input.GetButtonDown("Fire"+playerId))
             {
                 currentWeapon.Shoot(playerId);
                 lastShot = Time.time;
@@ -87,7 +86,6 @@ public class Player : MonoBehaviour, IDestroyable{
             
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
             {
-               
                 IDestroyable test = hitInfo.collider.GetComponent(typeof(IDestroyable)) as IDestroyable;
                 test.applyDamage(5, playerId);
             }
