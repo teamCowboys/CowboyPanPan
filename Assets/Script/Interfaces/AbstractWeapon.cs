@@ -37,7 +37,7 @@ public abstract class AbstractWeapon : AbstractPickable {
 
     public void Shoot(int ShooterID)
     {
-        Debug.Log("shoot");
+        //Debug.Log("shoot");
         if (reloading)
             return;
         chargeurCurrent--;

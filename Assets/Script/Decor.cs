@@ -23,6 +23,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 	float timeShake;
 	Vector3 startPos;
 	GameObject smoke;
+	bool goToDeath;
 
     void Awake()
     {
@@ -32,6 +33,7 @@ public class Decor : MonoBehaviour,IDestroyable {
 
 	void Start () 
 	{
+		goToDeath = false;
 		healthPoints = maxHealthPoints;
 		T1 = maxHealthPoints / 4;
 		T2 = T1 * 2;
@@ -105,21 +107,24 @@ public class Decor : MonoBehaviour,IDestroyable {
 
     public void applyDamage(float damage, int killerID=-1)
     {
-        healthPoints -= damage;
-        timeShake = 0.5f;
-        if (healthPoints <= 0 && notInvolved)
-        {
-            if (loot) { Instantiate(loot, this.gameObject.transform.position, Quaternion.identity); }
-            Destroy(this.gameObject);
-        }
-        if (healthPoints <= 0)
-        {
-            if (killerID != -1)
-            {
-                PlayerManager.Instance.applyScoringDecor(killerID, scoreValue);
-            }
-            Death();
-        }
+		if (goToDeath == false) 
+		{
+			healthPoints -= damage;
+			timeShake = 0.5f;
+			if (healthPoints <= 0 && notInvolved)
+			{
+				if (loot) { Instantiate(loot, this.gameObject.transform.position, Quaternion.identity); }
+				Destroy(this.gameObject);
+			}
+			if (healthPoints <= 0)
+			{
+				if (killerID != -1)
+				{
+					PlayerManager.Instance.applyScoringDecor(killerID, scoreValue);
+				}
+				Death();
+			}
+		}
     }
 
 	public void shake()
@@ -131,12 +136,17 @@ public class Decor : MonoBehaviour,IDestroyable {
 
     public void Death()
     {
+		goToDeath = true;
         GetComponent<Rigidbody>().isKinematic = true;
         if (loot){
             Instantiate (loot, this.gameObject.transform.position, Quaternion.identity);
             loot = null;
         }
 
+		foreach (Transform go in this.gameObject.GetComponentsInChildren<Transform>()) 
+		{
+			if (go.tag == "bullethole"){Destroy(go.gameObject);}
+		}
 		this.gameObject.transform.position -= new Vector3 (0,5,0) * Time.deltaTime;
 		notInvolved = true;
 		this.gameObject.GetComponent<SpriteRenderer> ().sortingOrder = -2;
