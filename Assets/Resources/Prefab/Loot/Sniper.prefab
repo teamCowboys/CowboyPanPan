@@ -97,7 +97,7 @@ MonoBehaviour:
   isAuto: 0
   cursor: {fileID: 21300000, guid: fa535d108880c5f4086410ce32d98077, type: 3}
   bulletHole: {fileID: 127696, guid: d150db49dc4b6df4f9b3a3f9c7d2dbd2, type: 2}
-  sound: {fileID: 8300000, guid: 14bff13120b5d2242a83fdf62ee9c9cd, type: 3}
+  sound: {fileID: 8300000, guid: d69cbb32633a69f41ac3605d5b0b78d1, type: 3}
 --- !u!212 &21208508
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -132,7 +132,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: d69cbb32633a69f41ac3605d5b0b78d1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179402}
