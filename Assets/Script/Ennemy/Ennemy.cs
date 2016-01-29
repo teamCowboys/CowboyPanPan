@@ -105,7 +105,7 @@ public class Ennemy : IEnnemy {
     {
         if (lifePoints <= dmg)
         {
-            Instantiate(loot, this.transform.position, loot.transform.rotation);
+			if (loot){Instantiate(loot, this.transform.position, loot.transform.rotation);}
             lifePoints = 0;
 
             PlayerManager.Instance.applyScoring(killerID, value);

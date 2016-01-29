@@ -47,7 +47,7 @@ public class Fire : MonoBehaviour, IDestroyable
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col.tag);
+        //Debug.Log(col.tag);
         if (col.tag == "Player")
         {
             IDestroyable target = col.GetComponent(typeof(IDestroyable)) as IDestroyable;

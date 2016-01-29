@@ -30,8 +30,10 @@ public class SpawnerOption : MonoBehaviour {
     Ennemy current;
     Transform trsm;
     bool randomScore, randomLife, alive;
+	Vector3 startPos;
 
     void Start () {
+		startPos = this.gameObject.transform.position;
         trsm = this.gameObject.GetComponent<Transform>();
         if (LifePoints == 0)
         {
@@ -56,6 +58,10 @@ public class SpawnerOption : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (startPos.y > 0.75f && this.gameObject.transform.parent.position.y < 0.75f) 
+		{
+			Destroy(this.gameObject);
+		}
         if (alive)
         {
             CheckLife();

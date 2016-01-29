@@ -5,6 +5,7 @@ public class MeteoScript : MonoBehaviour {
 
 	GameObject cloud1;
 	GameObject cloud2;
+	GameObject cloudT;
 
 	GameObject cloud;
 	GameObject papaCloud;
@@ -20,6 +21,7 @@ public class MeteoScript : MonoBehaviour {
 		papaCloud.name = "PapaCloud";
 		cloud1 = Resources.Load ("Prefab/Cloud") as GameObject;
 		cloud2 = Resources.Load ("Prefab/CloudBis") as GameObject;
+		cloudT = Resources.Load ("Prefab/CloudT") as GameObject;
 		timerCloud = delay;
 		nbCloud = 0;
 	}
@@ -31,9 +33,10 @@ public class MeteoScript : MonoBehaviour {
 
 		if (timerCloud >= delay)
 		{
-			int rnd = Random.Range(0,2);
-			if (rnd == 0){cloud = Instantiate(cloud1);}
-			else{cloud = Instantiate(cloud2);}
+			int rnd = Random.Range(0,11);
+			if (rnd < 5){cloud = Instantiate(cloud1);}
+			else if (rnd > 5 && rnd < 10){cloud = Instantiate(cloud2);}
+			else{cloud = Instantiate(cloudT);}
 			cloud.transform.parent = papaCloud.transform;
 			cloud.name = "Cloud-" + nbCloud;
 			nbCloud++;
