@@ -78,6 +78,7 @@ public abstract class AbstractWeapon : AbstractPickable {
 
     public void AttachTo(GameObject obj,System.Type type)
     {
+        obj.GetComponent<AudioSource>().Stop();
         Player player = obj.GetComponent<Player>();
         player.currentWeapon = (AbstractWeapon)obj.GetComponent(type);
         player.currentWeapon.SetPicked(true);

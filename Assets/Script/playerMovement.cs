@@ -10,6 +10,7 @@ public class playerMovement : MonoBehaviour
     public bool ground = false;
     private Vector3 moveDirection = Vector3.zero;
     private float gravityVelocity = 0f;
+    private int id;
 
     private float minY = 0f;
     private float minX = 0f;
@@ -23,18 +24,23 @@ public class playerMovement : MonoBehaviour
         minX += transform.GetChild(0).localScale.x*2f;
         maxX = cam.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x;
         maxX -= transform.GetChild(0).localScale.x*2f;
+        id = GetComponent<Player>().playerId;
     }
 
 
     void Update()
     {
-       
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        float h = Input.GetAxis("HorizontalMove" + id);
+        if (Mathf.Abs(h) > 0.5f)
+            moveDirection = new Vector3(h, 0f, 0f);
+        else
+            moveDirection = Vector3.zero;
+
         
         if (transform.position.y == minY)
         {
             gravityVelocity = 0f;
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump" + id))
             {
                 gravityVelocity += jumpForce * Time.deltaTime;
             }
