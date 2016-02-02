@@ -13,6 +13,7 @@ public class LaserGun : AbstractWeapon {
         damage = 50.0f;
         fireRate = 0.1f;
         reloadingTime = 1.0f;
+        sound = Resources.Load<AudioClip>("Sound/lasergun");
         cursor = Resources.Load<Sprite>("Graph/cursor/Cursor6");
         base.Init();
     }

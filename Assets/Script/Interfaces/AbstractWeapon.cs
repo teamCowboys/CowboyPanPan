@@ -14,8 +14,8 @@ public abstract class AbstractWeapon : AbstractPickable {
     private bool reloading = false;
     public bool isAuto = false;
     public Sprite cursor;
-    public GameObject bulletHole = Resources.Load("Graph/Weapons/bulletholeGameobject") as GameObject;
-    public AudioClip sound = Resources.Load<AudioClip>("Sound/minigun");
+    public GameObject bulletHole;
+    public AudioClip sound;
 
 
 
@@ -23,6 +23,7 @@ public abstract class AbstractWeapon : AbstractPickable {
     {
         base.Init();
         chargeurCurrent = chargeurMax;
+        bulletHole = Resources.Load("Graph/Weapons/bulletholeGameobject") as GameObject;
         maxAmmo -= chargeurCurrent;
     }
 
@@ -37,10 +38,11 @@ public abstract class AbstractWeapon : AbstractPickable {
 
     public void Shoot(int ShooterID)
     {
-        //Debug.Log("shoot");
         if (reloading)
             return;
         chargeurCurrent--;
+        if(!isAuto)
+            GetComponent<AudioSource>().PlayOneShot(sound);
         Ray ray = Camera.main.ScreenPointToRay(GetComponent<PlayerAim>().getCursorPosition());
         RaycastHit hit;
         if (Physics.Raycast(ray,out hit))

@@ -13,6 +13,7 @@ public class Gun : AbstractWeapon {
         fireRate = 0.2f;
         reloadingTime = 1.0f;
         cursor = Resources.Load<Sprite>("Graph/cursor/Cursor1");
+        sound = Resources.Load<AudioClip>("Sound/Gun2");
         base.Init();
     }
 

@@ -13,6 +13,7 @@ public class MiniGun : AbstractWeapon {
         reloadingTime = 5.0f;
         isAuto = true;
         cursor = Resources.Load<Sprite>("Graph/cursor/Cursor8");
+        sound = Resources.Load<AudioClip>("Sound/minigun");
         base.Init();
     }
 

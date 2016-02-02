@@ -13,6 +13,7 @@ public class Shotgun : AbstractWeapon
         damage = 3.0f;
         fireRate = 0.5f;
         reloadingTime = 1.0f;
+        sound = Resources.Load<AudioClip>("Sound/ShotGunWithReload");
         cursor = Resources.Load<Sprite>("Graph/cursor/Cursor7");
         base.Init();
     }

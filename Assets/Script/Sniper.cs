@@ -13,6 +13,7 @@ public class Sniper : AbstractWeapon
         fireRate = 0.1f;
         reloadingTime = 1.0f;
         cursor = Resources.Load<Sprite>("Graph/cursor/Cursor4");
+        sound = Resources.Load<AudioClip>("Sound/Sniper");
         base.Init();
     }
 
